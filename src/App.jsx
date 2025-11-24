@@ -6,7 +6,13 @@ import { HomePage } from './pages/HomePage';
 import { LoginPage } from './pages/LoginPage';
 import { SignupPage } from './pages/SignupPage';
 import { CampaignDetail } from './pages/CampaignDetail';
-import { CreatorDashboard } from './pages/CreatorDashboard';
+
+// Import Dashboard Layout and Pages
+import { DashboardLayout } from './layouts/DashboardLayout';
+import { Overview as DashboardOverview } from './pages/dashboard/Overview';
+import { MyCampaigns } from './pages/dashboard/MyCampaigns';
+import { Finances } from './pages/dashboard/Finances';
+import { Profile } from './pages/dashboard/Profile';
 
 export default function App() {
   return (
@@ -15,7 +21,16 @@ export default function App() {
         <Routes>
           <Route path="/login" element={<LoginPage />} />
           <Route path="/signup" element={<SignupPage />} />
-          <Route path="/dashboard" element={<CreatorDashboard />} />
+          
+          {/* Dashboard Routes */}
+          <Route path="/dashboard" element={<DashboardLayout />}>
+            <Route index element={<DashboardOverview />} />
+            <Route path="campaigns" element={<MyCampaigns />} />
+            <Route path="finances" element={<Finances />} />
+            <Route path="profile" element={<Profile />} />
+          </Route>
+
+          {/* Public Routes */}
           <Route path="/*" element={
             <>
               <Navbar />

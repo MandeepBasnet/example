@@ -22,6 +22,7 @@ export const campaignData = {
   ]
 };
 
+
 export const dashboardData = {
   totalRaised: 387500,
   goal: 500000,
@@ -38,5 +39,49 @@ export const dashboardData = {
   recentBackers: [
     { name: "Ram Sharma", amount: 5000, date: "2 hours ago" },
     { name: "Sita Nepali", amount: 1000, date: "5 hours ago" }
+  ]
+};
+
+export const creatorCampaigns = [
+  {
+    id: 1,
+    title: "Smart Agriculture IoT System",
+    status: "active",
+    raised: 387500,
+    goal: 500000,
+    backers: 156,
+    daysLeft: 12,
+    image: "https://images.unsplash.com/photo-1581092335878-2d9ff86ca2bf?auto=format&fit=crop&q=80&w=300"
+  },
+  {
+    id: 2,
+    title: "Remote Learning Tablets for Rural Schools",
+    status: "draft",
+    raised: 0,
+    goal: 1000000,
+    backers: 0,
+    daysLeft: 0,
+    image: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&q=80&w=300"
+  },
+  {
+    id: 3,
+    title: "Community Clean Water Initiative",
+    status: "completed",
+    raised: 750000,
+    goal: 700000,
+    backers: 234,
+    daysLeft: 0,
+    image: "https://images.unsplash.com/photo-1538300342682-cf57afb97285?auto=format&fit=crop&q=80&w=300"
+  }
+];
+
+export const financeData = {
+  availableBalance: 250000,
+  pendingBalance: 137500,
+  totalWithdrawn: 150000,
+  transactions: [
+    { id: "TXN-1234", date: "2024-03-15", description: "Milestone 1 Release", amount: 100000, status: "completed" },
+    { id: "TXN-1235", date: "2024-03-10", description: "Milestone 2 Release", amount: 50000, status: "completed" },
+    { id: "TXN-1236", date: "2024-02-28", description: "Platform Fee (5%)", amount: -5000, status: "completed" },
   ]
 };
