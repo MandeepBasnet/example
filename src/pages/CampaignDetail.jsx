@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { 
-  Heart, Share2, PlayCircle, ExternalLink, ShieldCheck, Wallet, CheckCircle2, Flag
+  Heart, Share2, PlayCircle, ExternalLink, ShieldCheck, Wallet, CheckCircle2, Flag, MapPin, Clock, Users
 } from 'lucide-react';
 import { Button, Card, Badge, Progress, Tabs, TabsList, TabsTrigger, TabsContent, Avatar } from '../components/ui';
 import { ImageWithFallback } from '../components/ImageWithFallback';
@@ -15,285 +15,264 @@ export function CampaignDetail() {
   const percentageFunded = Math.round((campaignData.raised / campaignData.goal) * 100);
 
   return (
-    <div className="min-h-screen bg-slate-50">
-      {/* Campaign Header */}
-      <div className="bg-white border-b shadow-sm">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-          <div className="grid lg:grid-cols-2 gap-8">
-            {/* Left Column: Media */}
-            <div className="space-y-4">
-               <div className="aspect-video bg-slate-900 rounded-2xl overflow-hidden relative group shadow-lg">
+    <div className="min-h-screen bg-white">
+      {/* 1. Header Section: Title & Blurb (Kickstarter Style: Top Center) */}
+      <div className="bg-white pt-12 pb-8 border-b border-slate-100">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center mb-10">
+          <h1 className="text-4xl md:text-5xl font-bold text-slate-900 mb-4 tracking-tight">{campaignData.title}</h1>
+          <p className="text-xl text-slate-500 max-w-3xl mx-auto leading-relaxed">{campaignData.description || "A revolutionary way to help local farmers using smart technology to increase yields and sustainability."}</p>
+        </div>
+
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid lg:grid-cols-12 gap-8 md:gap-12">
+            {/* Left Column: Media (8 cols) */}
+            <div className="lg:col-span-8 space-y-4">
+               <div className="aspect-video bg-black rounded-xl overflow-hidden relative group shadow-md">
                 <ImageWithFallback 
                   src={campaignData.image}
                   alt={campaignData.title}
-                  className="w-full h-full object-cover opacity-90 group-hover:scale-105 transition-transform duration-700"
+                  className="w-full h-full object-cover opacity-90"
                 />
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <button className="bg-white/20 backdrop-blur-sm p-4 rounded-full hover:bg-white/30 transition-all hover:scale-110">
-                    <PlayCircle className="w-12 h-12 text-white" />
-                  </button>
-                </div>
               </div>
-              
-              <div className="flex gap-3 overflow-x-auto pb-2">
-                 {[1,2,3].map(i => (
-                   <div key={i} className="h-20 w-32 bg-slate-200 rounded-lg flex-shrink-0 overflow-hidden cursor-pointer hover:ring-2 ring-blue-500">
-                     <ImageWithFallback src={campaignData.image} className="w-full h-full object-cover"/>
-                   </div>
-                 ))}
+              <div className="flex items-center gap-2 text-sm text-slate-500 border-b border-slate-100 pb-4">
+                 <MapPin className="w-4 h-4" /> {campaignData.location}
+                 <span className="mx-2">•</span>
+                 <span className="font-medium text-slate-900">{campaignData.category}</span>
               </div>
             </div>
 
-            {/* Right Column: Details */}
-            <div className="flex flex-col justify-between">
-              <div>
-                <div className="flex items-center gap-2 mb-3 text-sm">
-                  <Badge className="bg-blue-100 text-blue-700 hover:bg-blue-200 border-none px-3 py-1">{campaignData.category}</Badge>
-                  <span className="text-gray-300">|</span>
-                  <div className="flex items-center gap-1 text-gray-500">
-                    <span>{campaignData.location}</span>
+            {/* Right Column: Stats & Actions (4 cols) */}
+            <div className="lg:col-span-4 flex flex-col">
+              <div className="bg-blue-50 border-l-4 border-blue-600 p-4 mb-6">
+                <h3 className="font-bold text-blue-800 text-sm uppercase tracking-wide mb-1">Project We Love</h3>
+                <p className="text-blue-700 text-xs">This project has been featured by our editorial team.</p>
+              </div>
+
+              <div className="space-y-6 mb-8">
+                <div>
+                  <div className="h-2 bg-slate-100 rounded-full overflow-hidden mb-2">
+                    <div className="h-full bg-blue-600" style={{ width: `${Math.min(percentageFunded, 100)}%` }}></div>
                   </div>
-                  <span className="text-gray-300">|</span>
-                  <div className="flex items-center gap-1 text-red-500 text-xs font-medium bg-red-50 px-2 py-1 rounded-full">
-                    <Flag className="w-3 h-3" />
-                    <span>2 Flags</span>
+                  <div className="flex justify-between items-baseline text-blue-600 font-bold">
+                    <span>{percentageFunded}% funded</span>
                   </div>
                 </div>
-                
-                <h1 className="text-3xl md:text-4xl font-bold text-slate-900 mb-3 leading-tight">{campaignData.title}</h1>
-                <p className="text-slate-600 text-base mb-5 leading-relaxed">A revolutionary way to help local farmers using smart technology to increase yields and sustainability.</p>
-                
-                <div className="flex items-center gap-4 mb-6 p-4 bg-slate-50 rounded-xl border border-slate-100">
-                  <Avatar className="h-12 w-12" fallback="TF" />
-                  <div>
-                    <div className="text-sm text-gray-500 mb-0.5">Created by</div>
-                    <div className="font-bold text-slate-900">{campaignData.creator}</div>
-                  </div>
-                  <Button variant="outline" size="sm" className="ml-auto text-xs">View Profile</Button>
+
+                <div className="space-y-1">
+                  <span className="block text-3xl font-bold text-slate-900">Rs. {campaignData.raised.toLocaleString()}</span>
+                  <span className="block text-slate-500 text-sm">pledged of Rs. {campaignData.goal.toLocaleString()} goal</span>
+                </div>
+
+                <div className="space-y-1">
+                  <span className="block text-3xl font-bold text-slate-900">{campaignData.backers}</span>
+                  <span className="block text-slate-500 text-sm">backers</span>
+                </div>
+
+                <div className="space-y-1">
+                  <span className="block text-3xl font-bold text-slate-900">{campaignData.daysLeft}</span>
+                  <span className="block text-slate-500 text-sm">days to go</span>
                 </div>
               </div>
 
-              <div className="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
-                <div className="space-y-5">
-                  <div className="space-y-2">
-                    <div className="flex justify-between items-baseline">
-                      <span className="text-4xl font-bold text-slate-900">Rs. {campaignData.raised.toLocaleString()}</span>
-                      <span className="text-slate-500 font-medium">{percentageFunded}%</span>
-                    </div>
-                    <Progress value={percentageFunded} className="h-3 bg-slate-100" />
-                    <div className="flex justify-between text-sm text-slate-500">
-                      <span>pledged of Rs. {campaignData.goal.toLocaleString()} goal</span>
-                      <span>{campaignData.daysLeft} days left</span>
-                    </div>
-                  </div>
-
-                  <div className="grid grid-cols-2 gap-4 py-4 border-y border-slate-100">
-                    <div className="text-center p-3 bg-slate-50 rounded-lg">
-                      <div className="text-2xl font-bold text-slate-900">{campaignData.backers}</div>
-                      <div className="text-xs font-medium text-slate-500 uppercase tracking-wide">Backers</div>
-                    </div>
-                    <div className="text-center p-3 bg-slate-50 rounded-lg">
-                      <div className="text-2xl font-bold text-slate-900">{campaignData.daysLeft}</div>
-                      <div className="text-xs font-medium text-slate-500 uppercase tracking-wide">Days Left</div>
-                    </div>
-                  </div>
-
-                  <div className="space-y-3">
-                    <Button size="lg" className="w-full text-base h-12 font-bold bg-blue-600 hover:bg-blue-700 shadow-md">
-                      Back this Project
-                    </Button>
-                    <div className="flex gap-3">
-                      <Button size="lg" variant="outline" className="flex-1 text-slate-600">
-                        <Heart className="w-5 h-5 mr-2" /> Save
-                      </Button>
-                      <Button size="lg" variant="outline" className="flex-1 text-slate-600">
-                        <Share2 className="w-5 h-5 mr-2" /> Share
-                      </Button>
-                    </div>
-                  </div>
+              <div className="space-y-3 mt-auto">
+                <Button size="lg" className="w-full h-14 text-lg font-bold bg-blue-600 hover:bg-blue-700 text-white rounded-sm shadow-sm transition-all">
+                  Back this project
+                </Button>
+                <div className="flex gap-3">
+                  <Button variant="outline" className="flex-1 rounded-sm border-slate-300 hover:border-slate-400 hover:bg-slate-50 text-slate-700 font-medium">
+                    <Heart className="w-4 h-4 mr-2" /> Remind me
+                  </Button>
+                  <Button variant="outline" className="flex-1 rounded-sm border-slate-300 hover:border-slate-400 hover:bg-slate-50 text-slate-700 font-medium">
+                    <Share2 className="w-4 h-4 mr-2" /> Share
+                  </Button>
                 </div>
+                <p className="text-xs text-slate-400 text-center mt-2">
+                  All or nothing. This project will only be funded if it reaches its goal by {new Date().toLocaleDateString()}.
+                </p>
               </div>
             </div>
           </div>
         </div>
       </div>
 
-      {/* Tabbed Content */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 grid lg:grid-cols-3 gap-8">
-        <div className="lg:col-span-2">
+      {/* 2. Navigation Tabs (Sticky-ish) */}
+      <div className="border-b border-slate-200 sticky top-0 bg-white/95 backdrop-blur-sm z-10">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <Tabs defaultValue="story" className="w-full">
-            <TabsList className="w-full justify-start border-b rounded-none h-auto p-0 bg-transparent mb-6 space-x-6 overflow-x-auto">
-              <TabsTrigger value="story" className="rounded-none border-b-2 border-transparent data-[state=active]:border-blue-600 data-[state=active]:text-blue-600 text-slate-500 font-medium px-0 py-3 bg-transparent shadow-none whitespace-nowrap">
-                Campaign Story
+            <TabsList className="w-full justify-start h-auto p-0 bg-transparent space-x-8 overflow-x-auto">
+              <TabsTrigger value="story" className="rounded-none border-b-2 border-transparent data-[state=active]:border-blue-600 data-[state=active]:text-blue-600 text-slate-600 font-medium text-sm px-0 py-5 bg-transparent shadow-none whitespace-nowrap transition-colors hover:text-blue-600">
+                Campaign
               </TabsTrigger>
-              <TabsTrigger value="milestones" className="rounded-none border-b-2 border-transparent data-[state=active]:border-blue-600 data-[state=active]:text-blue-600 text-slate-500 font-medium px-0 py-3 bg-transparent shadow-none whitespace-nowrap">
+              <TabsTrigger value="milestones" className="rounded-none border-b-2 border-transparent data-[state=active]:border-blue-600 data-[state=active]:text-blue-600 text-slate-600 font-medium text-sm px-0 py-5 bg-transparent shadow-none whitespace-nowrap transition-colors hover:text-blue-600">
                 Milestones & Evidence
               </TabsTrigger>
-              <TabsTrigger value="updates" className="rounded-none border-b-2 border-transparent data-[state=active]:border-blue-600 data-[state=active]:text-blue-600 text-slate-500 font-medium px-0 py-3 bg-transparent shadow-none whitespace-nowrap">
-                Updates <Badge variant="secondary" className="ml-2 bg-slate-100">3</Badge>
+              <TabsTrigger value="updates" className="rounded-none border-b-2 border-transparent data-[state=active]:border-blue-600 data-[state=active]:text-blue-600 text-slate-600 font-medium text-sm px-0 py-5 bg-transparent shadow-none whitespace-nowrap transition-colors hover:text-blue-600">
+                Updates <span className="ml-2 bg-slate-100 text-slate-600 px-1.5 py-0.5 rounded-full text-xs">3</span>
               </TabsTrigger>
-              <TabsTrigger value="comments" className="rounded-none border-b-2 border-transparent data-[state=active]:border-blue-600 data-[state=active]:text-blue-600 text-slate-500 font-medium px-0 py-3 bg-transparent shadow-none whitespace-nowrap">
-                Comments
+              <TabsTrigger value="comments" className="rounded-none border-b-2 border-transparent data-[state=active]:border-blue-600 data-[state=active]:text-blue-600 text-slate-600 font-medium text-sm px-0 py-5 bg-transparent shadow-none whitespace-nowrap transition-colors hover:text-blue-600">
+                Comments <span className="ml-2 bg-slate-100 text-slate-600 px-1.5 py-0.5 rounded-full text-xs">12</span>
               </TabsTrigger>
             </TabsList>
 
-            <TabsContent value="story" className="animate-in fade-in-50 slide-in-from-left-5">
-              <Card className="p-6 border-none shadow-none bg-transparent">
-                <div className="prose max-w-none text-slate-700 leading-relaxed">
-                  <p className="mb-4 text-base">{campaignData.story}</p>
-                </div>
-
-                <div className="mt-8 p-5 bg-gradient-to-br from-blue-50 to-white rounded-2xl border border-blue-100 shadow-sm">
-                  <div className="flex items-start gap-4">
-                    <div className="p-3 bg-blue-100 rounded-xl text-blue-600">
-                      <ShieldCheck className="w-7 h-7" />
-                    </div>
-                    <div>
-                      <h3 className="text-lg font-bold text-blue-900 mb-2">Fundora Milestone Guarantee</h3>
-                      <p className="text-slate-600 leading-relaxed text-sm">
-                        This project is protected by our Milestone Verification System. Funds are released to the creator only after they submit verified proof of completing each stage. Your pledge is secure.
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </Card>
-            </TabsContent>
-
-            <TabsContent value="milestones" className="animate-in fade-in-50 slide-in-from-left-5">
-              <div className="space-y-6">
-                <div className="flex justify-between items-end mb-3">
-                  <h2 className="text-xl font-bold text-slate-900">Project Roadmap & Evidence</h2>
-                  <p className="text-slate-500 text-sm">4 Milestones Total</p>
-                </div>
-                
-                {/* Evidence Section */}
-                <Card className="p-5 border-slate-200 mb-6 bg-slate-50">
-                  <h3 className="font-bold text-base mb-4 flex items-center gap-2">
-                    <CheckCircle2 className="w-5 h-5 text-green-600" />
-                    Verified Evidence
-                  </h3>
-                  <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-                    <div className="aspect-square bg-white rounded-lg border border-slate-200 p-2 flex items-center justify-center cursor-pointer hover:border-blue-500 transition-colors">
-                      <div className="text-center">
-                        <div className="bg-slate-100 w-10 h-10 rounded-full flex items-center justify-center mx-auto mb-2">
-                          <ExternalLink className="w-4 h-4 text-slate-500" />
-                        </div>
-                        <span className="text-xs font-medium text-slate-600">Prototype Demo</span>
+            {/* 3. Main Content Grid */}
+            <div className="grid lg:grid-cols-12 gap-12 py-12 text-left">
+              {/* Left Content Column (8 cols) */}
+              <div className="lg:col-span-8">
+                <TabsContent value="story" className="mt-0 animate-in fade-in-50">
+                  <div className="prose prose-slate max-w-none prose-headings:font-bold prose-p:text-slate-600 prose-img:rounded-xl">
+                    <h3 className="text-2xl mb-4">About the Project</h3>
+                    <p className="text-lg leading-relaxed mb-6">{campaignData.story}</p>
+                    
+                    <div className="my-10 p-6 bg-slate-50 rounded-xl border border-slate-100 flex gap-4">
+                      <ShieldCheck className="w-10 h-10 text-blue-600 shrink-0" />
+                      <div>
+                        <h4 className="font-bold text-slate-900 mb-1">Fundora Verified</h4>
+                        <p className="text-sm text-slate-600">This project has passed our rigorous verification process. Milestones are tracked and funds are released in stages.</p>
                       </div>
                     </div>
-                    <div className="aspect-square bg-white rounded-lg border border-slate-200 p-2 flex items-center justify-center cursor-pointer hover:border-blue-500 transition-colors">
-                      <div className="text-center">
-                        <div className="bg-slate-100 w-10 h-10 rounded-full flex items-center justify-center mx-auto mb-2">
-                          <ExternalLink className="w-4 h-4 text-slate-500" />
-                        </div>
-                        <span className="text-xs font-medium text-slate-600">Field Test Report</span>
-                      </div>
+                    
+                    <div className="aspect-video bg-slate-100 rounded-xl flex items-center justify-center text-slate-400 mb-6">
+                      [Additional Project Images/Content]
                     </div>
                   </div>
-                </Card>
+                </TabsContent>
 
-                <MilestoneTimeline milestones={campaignData.milestones} />
-              </div>
-            </TabsContent>
+                <TabsContent value="milestones" className="mt-0 animate-in fade-in-50">
+                  <div className="space-y-8">
+                    <div className="flex items-center justify-between">
+                      <h2 className="text-2xl font-bold text-slate-900">Project Roadmap</h2>
+                      <Badge variant="outline" className="border-blue-200 text-blue-700 bg-blue-50">On Track</Badge>
+                    </div>
+                    
+                    <Card className="p-6 border-slate-200 bg-slate-50/50">
+                      <h3 className="font-bold text-slate-900 mb-4 flex items-center gap-2">
+                        <CheckCircle2 className="w-5 h-5 text-blue-600" />
+                        Verified Evidence
+                      </h3>
+                      <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
+                        <div className="aspect-square bg-white rounded-lg border border-slate-200 p-4 flex flex-col items-center justify-center text-center cursor-pointer hover:border-blue-500 hover:shadow-md transition-all group">
+                          <ExternalLink className="w-6 h-6 text-slate-400 group-hover:text-blue-500 mb-2" />
+                          <span className="text-xs font-medium text-slate-600">Prototype Demo</span>
+                        </div>
+                        <div className="aspect-square bg-white rounded-lg border border-slate-200 p-4 flex flex-col items-center justify-center text-center cursor-pointer hover:border-blue-500 hover:shadow-md transition-all group">
+                          <ExternalLink className="w-6 h-6 text-slate-400 group-hover:text-blue-500 mb-2" />
+                          <span className="text-xs font-medium text-slate-600">Field Report</span>
+                        </div>
+                      </div>
+                    </Card>
 
-            <TabsContent value="updates" className="animate-in fade-in-50 slide-in-from-left-5">
-              <div className="space-y-6">
-                <Card className="p-5 border-l-4 border-l-blue-600 overflow-hidden">
-                  <div className="flex items-center justify-between mb-3">
-                    <Badge className="bg-blue-100 text-blue-700 hover:bg-blue-200 border-none">Update #3</Badge>
-                    <span className="text-sm text-gray-500">3 days ago</span>
+                    <MilestoneTimeline milestones={campaignData.milestones} />
                   </div>
-                  <h3 className="text-lg font-bold mb-2 text-slate-900">Field Testing Phase Completed Successfully!</h3>
-                  <p className="text-gray-600 leading-relaxed text-sm">
-                    We're excited to announce that our field testing phase has been completed with outstanding results...
-                  </p>
-                </Card>
-              </div>
-            </TabsContent>
+                </TabsContent>
 
-            <TabsContent value="comments" className="animate-in fade-in-50 slide-in-from-left-5">
-              <div className="space-y-6">
-                <h2 className="text-xl font-bold text-slate-900 mb-4">Community Discussion</h2>
-                
-                {/* Comment Input */}
-                <div className="flex gap-3 mb-6">
-                  <Avatar fallback="ME" className="bg-blue-100 text-blue-600" />
-                  <div className="flex-1">
+                <TabsContent value="updates" className="mt-0 animate-in fade-in-50">
+                  <div className="space-y-6">
+                    {[1, 2, 3].map((i) => (
+                      <Card key={i} className="p-6 hover:border-blue-200 transition-colors cursor-pointer group">
+                        <div className="flex items-center justify-between mb-3">
+                          <span className="text-sm font-medium text-slate-500">Update #{4-i}</span>
+                          <span className="text-sm text-slate-400">Oct {10 + i}, 2024</span>
+                        </div>
+                        <h3 className="text-xl font-bold text-slate-900 mb-2 group-hover:text-blue-700 transition-colors">Production Phase {i} Initiated</h3>
+                        <p className="text-slate-600 line-clamp-2">We are happy to report that the initial batch of sensors has arrived at our warehouse and testing has begun...</p>
+                        <div className="mt-4 pt-4 border-t border-slate-100 flex items-center gap-4 text-sm text-slate-500">
+                          <span className="hover:text-blue-600">12 Comments</span>
+                          <span className="hover:text-blue-600">45 Likes</span>
+                        </div>
+                      </Card>
+                    ))}
+                  </div>
+                </TabsContent>
+
+                <TabsContent value="comments" className="mt-0 animate-in fade-in-50">
+                  <div className="bg-slate-50 p-6 rounded-xl mb-8">
+                    <h3 className="font-bold text-slate-900 mb-4">Post a comment</h3>
                     <textarea 
-                      className="w-full p-3 border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent min-h-[90px] resize-none text-sm"
-                      placeholder="Ask a question or leave a comment..."
+                      className="w-full p-4 border border-slate-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent min-h-[120px] resize-none mb-3"
+                      placeholder="Ask a question or cheer the creator on..."
                     ></textarea>
-                    <div className="flex justify-end mt-2">
-                      <Button size="sm">Post Comment</Button>
+                    <div className="flex justify-end">
+                      <Button className="bg-blue-600 hover:bg-blue-700 text-white">Post Comment</Button>
                     </div>
+                  </div>
+                  
+                  <div className="space-y-6">
+                    {[1, 2].map((i) => (
+                      <div key={i} className="flex gap-4 pb-6 border-b border-slate-100 last:border-0">
+                        <Avatar fallback={`U${i}`} className="bg-slate-200 text-slate-600" />
+                        <div>
+                          <div className="flex items-center gap-2 mb-1">
+                            <span className="font-bold text-slate-900">Backer Name {i}</span>
+                            <Badge variant="secondary" className="text-[10px] bg-blue-100 text-blue-700">Super Backer</Badge>
+                            <span className="text-xs text-slate-400">• 2 days ago</span>
+                          </div>
+                          <p className="text-slate-600 text-sm leading-relaxed">This project looks amazing! I've been waiting for a solution like this for my farm. Can you confirm the battery life?</p>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </TabsContent>
+              </div>
+
+              {/* Right Sidebar (4 cols) */}
+              <div className="lg:col-span-4 space-y-8">
+                {/* Creator Card */}
+                <div className="border-b border-slate-200 pb-8">
+                  <h4 className="font-bold text-slate-900 mb-4">Created by</h4>
+                  <div className="flex items-center gap-4 mb-4">
+                    <Avatar className="h-16 w-16" fallback="TF" />
+                    <div>
+                      <div className="font-bold text-lg text-slate-900">{campaignData.creator}</div>
+                      <div className="text-sm text-slate-500">3 Campaigns • Chitwan, Nepal</div>
+                    </div>
+                  </div>
+                  <p className="text-sm text-slate-600 mb-4">We are a team of agricultural engineers and software developers passionate about modernizing farming.</p>
+                  <Button variant="link" className="p-0 h-auto text-blue-600 font-bold hover:text-blue-700 hover:no-underline">
+                    See more projects
+                  </Button>
+                </div>
+
+                {/* Support / Rewards */}
+                <div>
+                  <h4 className="font-bold text-slate-900 mb-6">Support</h4>
+                  <div className="space-y-6">
+                    {campaignData.rewards.map((reward) => (
+                      <RewardTier 
+                        key={reward.id} 
+                        reward={reward}
+                        selected={selectedReward === reward.id}
+                        onSelect={() => setSelectedReward(reward.id)}
+                      />
+                    ))}
                   </div>
                 </div>
 
-                {/* Comments List */}
-                <div className="space-y-4">
-                  {[1, 2].map((i) => (
-                    <div key={i} className="flex gap-3">
-                      <Avatar fallback={`U${i}`} className="bg-slate-100 text-slate-500" />
-                      <div className="flex-1">
-                        <div className="bg-slate-50 p-3 rounded-xl rounded-tl-none">
-                          <div className="flex justify-between items-start mb-1">
-                            <h4 className="font-bold text-slate-900 text-sm">User {i}</h4>
-                            <span className="text-xs text-slate-500">2 days ago</span>
-                          </div>
-                          <p className="text-slate-600 text-sm">This looks amazing! Can you confirm if the device works with solar power?</p>
-                        </div>
-                        <div className="flex gap-4 mt-2 ml-2">
-                          <button className="text-xs font-medium text-slate-500 hover:text-blue-600">Reply</button>
-                          <button className="text-xs font-medium text-slate-500 hover:text-blue-600">Like</button>
-                        </div>
-                      </div>
+                {/* Payment Options */}
+                <Card className="p-4 bg-slate-50 border-slate-200">
+                  <h4 className="font-bold text-sm text-slate-900 mb-3 flex items-center gap-2">
+                    <Wallet className="w-4 h-4 text-slate-500" />
+                    Secure Payment
+                  </h4>
+                  <div className="flex gap-2">
+                    <div className="h-8 w-12 bg-white border border-slate-200 rounded flex items-center justify-center">
+                      <span className="text-[10px] font-bold text-blue-600">eSewa</span>
                     </div>
-                  ))}
+                    <div className="h-8 w-12 bg-white border border-slate-200 rounded flex items-center justify-center">
+                      <span className="text-[10px] font-bold text-purple-600">Khalti</span>
+                    </div>
+                  </div>
+                </Card>
+
+                {/* Flag Campaign */}
+                <div className="pt-8 border-t border-slate-200">
+                  <button className="flex items-center gap-2 text-sm text-slate-500 hover:text-red-600 transition-colors w-full justify-center">
+                    <Flag className="w-4 h-4" />
+                    Report this project
+                  </button>
                 </div>
               </div>
-            </TabsContent>
+            </div>
           </Tabs>
-        </div>
-
-        <div className="space-y-6">
-          {/* Payment Methods Card */}
-          <Card className="p-6 bg-slate-50 border-slate-200">
-            <h3 className="font-bold text-slate-900 mb-4 flex items-center gap-2">
-              <Wallet className="w-5 h-5 text-slate-500" />
-              Secure Payment Options
-            </h3>
-            <div className="space-y-3">
-              <div className="flex items-center justify-between p-3 bg-white border border-slate-200 rounded-lg shadow-sm">
-                <span className="font-medium text-sm flex items-center gap-3">
-                  <div className="w-8 h-8 bg-green-600 rounded flex items-center justify-center text-white text-[10px] font-bold">eS</div>
-                  eSewa
-                </span>
-                <CheckCircle2 className="h-5 w-5 text-green-500" />
-              </div>
-              <div className="flex items-center justify-between p-3 bg-white border border-slate-200 rounded-lg shadow-sm">
-                <span className="font-medium text-sm flex items-center gap-3">
-                  <div className="w-8 h-8 bg-purple-600 rounded flex items-center justify-center text-white text-[10px] font-bold">K</div>
-                  Khalti
-                </span>
-                <CheckCircle2 className="h-5 w-5 text-green-500" />
-              </div>
-            </div>
-          </Card>
-
-          {/* Rewards */}
-          <div>
-            <h3 className="font-bold text-xl text-slate-900 mb-6">Support this Project</h3>
-            <div className="space-y-4">
-              {campaignData.rewards.map((reward) => (
-                <RewardTier 
-                  key={reward.id} 
-                  reward={reward}
-                  selected={selectedReward === reward.id}
-                  onSelect={() => setSelectedReward(reward.id)}
-                />
-              ))}
-            </div>
-          </div>
         </div>
       </div>
     </div>
