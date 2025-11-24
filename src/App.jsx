@@ -5,15 +5,8 @@ import { Footer } from './components/Footer';
 import { HomePage } from './pages/HomePage';
 import { LoginPage } from './pages/LoginPage';
 import { SignupPage } from './pages/SignupPage';
-
-// Temporary simple components until fully extracted
-function CampaignDetail() {
-  return <div className="min-h-screen flex items-center justify-center"><h1 className="text-2xl">Campaign Detail - Coming Soon</h1></div>;
-}
-
-function CreatorDashboard() {
-  return <div className="min-h-screen flex items-center justify-center"><h1 className="text-2xl">Creator Dashboard - Coming Soon</h1></div>;
-}
+import { CampaignDetail } from './pages/CampaignDetail';
+import { CreatorDashboard } from './pages/CreatorDashboard';
 
 export default function App() {
   return (
