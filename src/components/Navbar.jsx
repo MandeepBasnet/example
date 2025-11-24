@@ -47,7 +47,7 @@ export function Navbar() {
               <User className="w-5 h-5" />
             </Link>
 
-            <Button className="bg-blue-600 hover:bg-blue-700 text-white" onClick={() => navigate('/dashboard')}>
+            <Button className="bg-blue-600 hover:bg-blue-700 text-white" onClick={() => navigate('/start-campaign')}>
               Start a Campaign
             </Button>
 

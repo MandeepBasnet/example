@@ -18,7 +18,7 @@ export function Finances() {
             <div className="p-2 bg-white/10 rounded-lg"><Wallet className="h-5 w-5" /></div>
             <span className="font-medium">Available Balance</span>
           </div>
-          <div className="text-3xl font-bold mb-1">Rs. {financeData.availableBalance.toLocaleString()}</div>
+          <div className="text-3xl font-bold mb-1">Rs. {financeData.availableBalance.toLocaleString()}</div>        
           <div className="flex items-center gap-2 mt-4">
             <Button size="sm" className="bg-white text-slate-900 hover:bg-slate-100 w-full">
               Withdraw Funds
@@ -28,7 +28,7 @@ export function Finances() {
 
         <Card className="p-6">
           <div className="flex items-center gap-3 mb-4 text-slate-500">
-            <div className="p-2 bg-orange-100 text-orange-600 rounded-lg"><Clock className="h-5 w-5" /></div>
+            <div className="p-2 bg-orange-100 text-orange-600 rounded-lg"><Clock className="h-5 w-5" /></div>       
             <span className="font-medium">Pending Payouts</span>
           </div>
           <div className="text-3xl font-bold text-slate-900 mb-1">Rs. {financeData.pendingBalance.toLocaleString()}</div>
@@ -37,7 +37,7 @@ export function Finances() {
 
         <Card className="p-6">
           <div className="flex items-center gap-3 mb-4 text-slate-500">
-            <div className="p-2 bg-green-100 text-green-600 rounded-lg"><ArrowUpRight className="h-5 w-5" /></div>
+            <div className="p-2 bg-green-100 text-green-600 rounded-lg"><ArrowUpRight className="h-5 w-5" /></div>  
             <span className="font-medium">Total Withdrawn</span>
           </div>
           <div className="text-3xl font-bold text-slate-900 mb-1">Rs. {financeData.totalWithdrawn.toLocaleString()}</div>

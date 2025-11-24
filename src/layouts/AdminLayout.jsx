@@ -1,10 +1,10 @@
 import React from 'react';
 import { Link, useLocation, Outlet } from 'react-router-dom';
-import { LayoutDashboard, Heart, Compass, MessageSquare, User, LogOut } from 'lucide-react';
+import { LayoutDashboard, Users, Flag, Settings, LogOut, ShieldAlert } from 'lucide-react';
 import { Button } from '../components/ui';
 import { FundoraLogo } from '../components/FundoraLogo';
 
-export function DashboardLayout() {
+export function AdminLayout() {
   const location = useLocation();
   
   const isActive = (path) => location.pathname === path;
@@ -27,14 +27,15 @@ export function DashboardLayout() {
         <div className="p-6 border-b border-slate-100">
           <Link to="/" className="flex items-center">
             <FundoraLogo />
+            <span className="ml-2 text-xs font-bold text-white bg-red-600 px-2 py-0.5 rounded-full">ADMIN</span>
           </Link>
         </div>
         <nav className="p-4 space-y-1 flex-1">
-          <NavItem to="/dashboard" icon={LayoutDashboard} label="Dashboard" />
-          <NavItem to="/dashboard/supported" icon={Heart} label="Supported Projects" />
-          <NavItem to="/campaigns" icon={Compass} label="Browse Campaigns" />
-          <NavItem to="/dashboard/messages" icon={MessageSquare} label="Messages" />
-          <NavItem to="/dashboard/profile" icon={User} label="Profile" />
+          <NavItem to="/admin" icon={LayoutDashboard} label="Dashboard" />
+          <NavItem to="/admin/campaigns" icon={ShieldAlert} label="Campaign Queue" />
+          <NavItem to="/admin/users" icon={Users} label="User Management" />
+          <NavItem to="/admin/moderation" icon={Flag} label="Moderation" />
+          <NavItem to="/admin/settings" icon={Settings} label="Platform Settings" />
         </nav>
         <div className="p-4 border-t border-slate-100">
           <Button variant="ghost" className="w-full justify-start text-red-600 hover:text-red-700 hover:bg-red-50">

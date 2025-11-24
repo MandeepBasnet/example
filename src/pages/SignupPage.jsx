@@ -68,6 +68,15 @@ export function SignupPage() {
                   <Eye className="w-5 h-5" />
                 </button>
               </div>
+              <div className="flex gap-1 mt-2">
+                <div className="h-1 flex-1 bg-slate-200 rounded-full overflow-hidden">
+                  <div className="h-full bg-red-500 w-0"></div>
+                </div>
+                <div className="h-1 flex-1 bg-slate-200 rounded-full"></div>
+                <div className="h-1 flex-1 bg-slate-200 rounded-full"></div>
+                <div className="h-1 flex-1 bg-slate-200 rounded-full"></div>
+              </div>
+              <p className="text-xs text-slate-500">Must be at least 8 characters</p>
             </div>
 
             <div className="flex items-start gap-3 pt-2">

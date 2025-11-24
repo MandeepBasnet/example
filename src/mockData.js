@@ -85,3 +85,57 @@ export const financeData = {
     { id: "TXN-1236", date: "2024-02-28", description: "Platform Fee (5%)", amount: -5000, status: "completed" },
   ]
 };
+
+export const backerData = {
+  totalBacked: 15000,
+  campaignsBacked: 5,
+  activeCampaigns: [
+    {
+      id: 1,
+      title: "Smart Agriculture IoT System",
+      creator: "TechFarm Nepal",
+      amountBacked: 5000,
+      progress: 75,
+      daysLeft: 12,
+      image: "https://images.unsplash.com/photo-1581092335878-2d9ff86ca2bf?auto=format&fit=crop&q=80&w=300"
+    },
+    {
+      id: 4,
+      title: "Eco-Friendly Bamboo Housing",
+      creator: "Green Homes",
+      amountBacked: 2000,
+      progress: 45,
+      daysLeft: 25,
+      image: "https://images.unsplash.com/photo-1518780664697-55e3ad937233?auto=format&fit=crop&q=80&w=300"
+    }
+  ],
+  recentTransactions: [
+    { id: "TXN-9988", date: "2024-03-20", description: "Backed Smart Agriculture", amount: 5000 },
+    { id: "TXN-9989", date: "2024-03-18", description: "Backed Bamboo Housing", amount: 2000 }
+  ],
+  recommended: [
+    {
+      id: 5,
+      title: "Digital Literacy for Seniors",
+      category: "Education",
+      image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&q=80&w=300"
+    }
+  ]
+};
+
+export const adminData = {
+  totalCampaigns: 156,
+  totalUsers: 1250,
+  totalFunding: 4500000,
+  activeCampaigns: 42,
+  pendingApprovals: 8,
+  pendingReviews: 12,
+  flaggedCampaigns: 3,
+  platformSuccessRate: 85,
+  monthlyRevenue: 225000,
+  recentActivity: [
+    { id: 1, type: "new_campaign", message: "New campaign 'Solar Irrigation' submitted", time: "10 mins ago" },
+    { id: 2, type: "flag", message: "Campaign #45 flagged for copyright", time: "1 hour ago" },
+    { id: 3, type: "large_backing", message: "Large backing of Rs. 50,000 on Campaign #12", time: "2 hours ago" }
+  ]
+};

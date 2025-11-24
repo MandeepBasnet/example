@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { 
   PlusCircle, DollarSign, CheckCircle2, Clock, AlertCircle, Upload, Eye, TrendingUp, Wallet, Users
 } from 'lucide-react';
@@ -15,9 +16,11 @@ export function Overview() {
           <h1 className="text-3xl font-bold text-slate-900">Creator Dashboard</h1>
           <p className="text-slate-500">Welcome back, TechFarm Nepal</p>
         </div>
-        <Button className="bg-blue-600 hover:bg-blue-700 gap-2 h-11 px-6 shadow-lg shadow-blue-200">
-          <PlusCircle className="h-5 w-5" /> Start New Campaign
-        </Button>
+        <Link to="/start-campaign">
+          <Button className="bg-blue-600 hover:bg-blue-700 gap-2 h-11 px-6 shadow-lg shadow-blue-200">
+            <PlusCircle className="h-5 w-5" /> Start New Campaign
+          </Button>
+        </Link>
       </div>
 
       {/* Stats Grid */}

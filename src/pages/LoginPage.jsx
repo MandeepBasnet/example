@@ -29,16 +29,23 @@ export function LoginPage() {
               <Input type="email" placeholder="name@company.com" className="h-11" />
             </div>
             
-            <div className="space-y-2">
-              <div className="flex justify-between">
+            <div className="space-y-4">
+              <div className="space-y-2">
                 <label className="text-sm font-medium text-slate-700">Password</label>
-                <a href="#" className="text-sm text-blue-600 hover:underline font-medium">Forgot password?</a>
+                <div className="relative">
+                  <Input type="password" placeholder="Enter your password" className="h-11 pr-10" />
+                  <button type="button" className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600">
+                    <Eye className="w-5 h-5" />
+                  </button>
+                </div>
               </div>
-              <div className="relative">
-                <Input type="password" placeholder="Enter your password" className="h-11 pr-10" />
-                <button type="button" className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600">
-                  <Eye className="w-5 h-5" />
-                </button>
+              
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-2">
+                  <input type="checkbox" id="remember" className="h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500" />
+                  <label htmlFor="remember" className="text-sm text-slate-600">Remember me</label>
+                </div>
+                <Link to="/forgot-password" className="text-sm text-blue-600 hover:underline font-medium">Forgot password?</Link>
               </div>
             </div>
 

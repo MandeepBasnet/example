@@ -17,7 +17,7 @@ export function ProjectCard({ project }) {
   };
 
   return (
-    <Link to={`/campaign/${project.id}`} className="group h-full block">
+    <Link to={`/campaigns/${project.id}`} className="group h-full block">
       <div className="bg-white rounded-xl overflow-hidden border border-gray-200 hover:shadow-xl transition-all duration-300 h-full flex flex-col">
         {/* Project Image */}
         <div className="relative aspect-video overflow-hidden">

@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { ArrowRight, ShieldCheck, Wallet, TrendingUp } from 'lucide-react';
 import { Button } from '../components/ui';
 import { ProjectCard } from '../components/ProjectCard';
@@ -105,13 +106,17 @@ export function HomePage() {
               </div>
               
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Button size="lg" className="bg-white text-slate-900 hover:bg-blue-50 text-base px-8 h-12 font-bold shadow-xl">
-                  Start a Campaign
-                  <ArrowRight className="ml-2 w-5 h-5" />
-                </Button>
-                <Button size="lg" variant="outline" className="border-white/30 text-black hover:bg-white/10 hover:text-black text-base px-8 h-12 backdrop-blur-sm">
-                  Explore Projects
-                </Button>
+                <Link to="/start-campaign">
+                  <Button size="lg" className="bg-white text-slate-900 hover:bg-blue-50 text-base px-8 h-12 font-bold shadow-xl">
+                    Start a Campaign
+                    <ArrowRight className="ml-2 w-5 h-5" />
+                  </Button>
+                </Link>
+                <Link to="/campaigns">
+                  <Button size="lg" variant="outline" className="border-white/30 text-black hover:bg-white/10 hover:text-black text-base px-8 h-12 backdrop-blur-sm">
+                    Explore Projects
+                  </Button>
+                </Link>
               </div>
 
               <div className="mt-10 flex flex-wrap items-center justify-center gap-6 text-sm text-slate-300">
@@ -190,9 +195,11 @@ export function HomePage() {
               <h2 className="text-3xl font-bold text-slate-900 mb-2">Trending Campaigns</h2>
               <p className="text-slate-600 text-lg">Support the most exciting projects in Nepal</p>
             </div>
-            <Button variant="outline" className="hidden sm:flex gap-2">
-              View All Projects <ArrowRight className="w-4 h-4"/>
-            </Button>
+            <Link to="/campaigns" className="hidden sm:block">
+              <Button variant="outline" className="gap-2">
+                View All Projects <ArrowRight className="w-4 h-4"/>
+              </Button>
+            </Link>
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -202,7 +209,9 @@ export function HomePage() {
           </div>
           
           <div className="mt-10 text-center sm:hidden">
-            <Button variant="outline" className="w-full">View All Projects</Button>
+            <Link to="/campaigns">
+              <Button variant="outline" className="w-full">View All Projects</Button>
+            </Link>
           </div>
         </div>
       </section>
@@ -259,9 +268,11 @@ export function HomePage() {
             Join hundreds of successful Nepali creators who have raised funds and built communities on Fundora.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button size="lg" className="bg-blue-600 hover:bg-blue-700 text-white px-10 py-6 text-lg h-auto shadow-xl">
-              Start Your Campaign
-            </Button>
+            <Link to="/start-campaign">
+              <Button size="lg" className="bg-blue-600 hover:bg-blue-700 text-white px-10 py-6 text-lg h-auto shadow-xl">
+                Start Your Campaign
+              </Button>
+            </Link>
             <Button size="lg" variant="outline" className="border-slate-300 text-slate-900 hover:bg-slate-100 px-10 py-6 text-lg h-auto">
               Learn How it Works
             </Button>

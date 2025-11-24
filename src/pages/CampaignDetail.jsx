@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { 
-  Heart, Share2, PlayCircle, ExternalLink, ShieldCheck, Wallet, CheckCircle2
+  Heart, Share2, PlayCircle, ExternalLink, ShieldCheck, Wallet, CheckCircle2, Flag
 } from 'lucide-react';
 import { Button, Card, Badge, Progress, Tabs, TabsList, TabsTrigger, TabsContent, Avatar } from '../components/ui';
 import { ImageWithFallback } from '../components/ImageWithFallback';
@@ -15,13 +15,13 @@ export function CampaignDetail() {
   const percentageFunded = Math.round((campaignData.raised / campaignData.goal) * 100);
 
   return (
-    <div className="min-h-screen bg-slate-50 pb-12">
+    <div className="min-h-screen bg-slate-50">
       {/* Campaign Header */}
       <div className="bg-white border-b shadow-sm">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
-          <div className="grid lg:grid-cols-2 gap-10">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+          <div className="grid lg:grid-cols-2 gap-8">
             {/* Left Column: Media */}
-            <div className="space-y-6">
+            <div className="space-y-4">
                <div className="aspect-video bg-slate-900 rounded-2xl overflow-hidden relative group shadow-lg">
                 <ImageWithFallback 
                   src={campaignData.image}
@@ -35,7 +35,7 @@ export function CampaignDetail() {
                 </div>
               </div>
               
-              <div className="flex gap-4 overflow-x-auto pb-2">
+              <div className="flex gap-3 overflow-x-auto pb-2">
                  {[1,2,3].map(i => (
                    <div key={i} className="h-20 w-32 bg-slate-200 rounded-lg flex-shrink-0 overflow-hidden cursor-pointer hover:ring-2 ring-blue-500">
                      <ImageWithFallback src={campaignData.image} className="w-full h-full object-cover"/>
@@ -47,18 +47,23 @@ export function CampaignDetail() {
             {/* Right Column: Details */}
             <div className="flex flex-col justify-between">
               <div>
-                <div className="flex items-center gap-2 mb-4 text-sm">
+                <div className="flex items-center gap-2 mb-3 text-sm">
                   <Badge className="bg-blue-100 text-blue-700 hover:bg-blue-200 border-none px-3 py-1">{campaignData.category}</Badge>
                   <span className="text-gray-300">|</span>
                   <div className="flex items-center gap-1 text-gray-500">
                     <span>{campaignData.location}</span>
                   </div>
+                  <span className="text-gray-300">|</span>
+                  <div className="flex items-center gap-1 text-red-500 text-xs font-medium bg-red-50 px-2 py-1 rounded-full">
+                    <Flag className="w-3 h-3" />
+                    <span>2 Flags</span>
+                  </div>
                 </div>
                 
-                <h1 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4 leading-tight">{campaignData.title}</h1>
-                <p className="text-slate-600 text-lg mb-6 leading-relaxed">A revolutionary way to help local farmers using smart technology to increase yields and sustainability.</p>
+                <h1 className="text-3xl md:text-4xl font-bold text-slate-900 mb-3 leading-tight">{campaignData.title}</h1>
+                <p className="text-slate-600 text-base mb-5 leading-relaxed">A revolutionary way to help local farmers using smart technology to increase yields and sustainability.</p>
                 
-                <div className="flex items-center gap-4 mb-8 p-4 bg-slate-50 rounded-xl border border-slate-100">
+                <div className="flex items-center gap-4 mb-6 p-4 bg-slate-50 rounded-xl border border-slate-100">
                   <Avatar className="h-12 w-12" fallback="TF" />
                   <div>
                     <div className="text-sm text-gray-500 mb-0.5">Created by</div>
@@ -69,7 +74,7 @@ export function CampaignDetail() {
               </div>
 
               <div className="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
-                <div className="space-y-6">
+                <div className="space-y-5">
                   <div className="space-y-2">
                     <div className="flex justify-between items-baseline">
                       <span className="text-4xl font-bold text-slate-900">Rs. {campaignData.raised.toLocaleString()}</span>
@@ -114,35 +119,38 @@ export function CampaignDetail() {
       </div>
 
       {/* Tabbed Content */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 grid lg:grid-cols-3 gap-10">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 grid lg:grid-cols-3 gap-8">
         <div className="lg:col-span-2">
           <Tabs defaultValue="story" className="w-full">
-            <TabsList className="w-full justify-start border-b rounded-none h-auto p-0 bg-transparent mb-8 space-x-8">
-              <TabsTrigger value="story" className="rounded-none border-b-2 border-transparent data-[state=active]:border-blue-600 data-[state=active]:text-blue-600 text-slate-500 font-medium text-base px-0 py-4 bg-transparent shadow-none">
+            <TabsList className="w-full justify-start border-b rounded-none h-auto p-0 bg-transparent mb-6 space-x-6 overflow-x-auto">
+              <TabsTrigger value="story" className="rounded-none border-b-2 border-transparent data-[state=active]:border-blue-600 data-[state=active]:text-blue-600 text-slate-500 font-medium px-0 py-3 bg-transparent shadow-none whitespace-nowrap">
                 Campaign Story
               </TabsTrigger>
-              <TabsTrigger value="milestones" className="rounded-none border-b-2 border-transparent data-[state=active]:border-blue-600 data-[state=active]:text-blue-600 text-slate-500 font-medium text-base px-0 py-4 bg-transparent shadow-none">
-                Milestones & Roadmap
+              <TabsTrigger value="milestones" className="rounded-none border-b-2 border-transparent data-[state=active]:border-blue-600 data-[state=active]:text-blue-600 text-slate-500 font-medium px-0 py-3 bg-transparent shadow-none whitespace-nowrap">
+                Milestones & Evidence
               </TabsTrigger>
-              <TabsTrigger value="updates" className="rounded-none border-b-2 border-transparent data-[state=active]:border-blue-600 data-[state=active]:text-blue-600 text-slate-500 font-medium text-base px-0 py-4 bg-transparent shadow-none">
+              <TabsTrigger value="updates" className="rounded-none border-b-2 border-transparent data-[state=active]:border-blue-600 data-[state=active]:text-blue-600 text-slate-500 font-medium px-0 py-3 bg-transparent shadow-none whitespace-nowrap">
                 Updates <Badge variant="secondary" className="ml-2 bg-slate-100">3</Badge>
+              </TabsTrigger>
+              <TabsTrigger value="comments" className="rounded-none border-b-2 border-transparent data-[state=active]:border-blue-600 data-[state=active]:text-blue-600 text-slate-500 font-medium px-0 py-3 bg-transparent shadow-none whitespace-nowrap">
+                Comments
               </TabsTrigger>
             </TabsList>
 
             <TabsContent value="story" className="animate-in fade-in-50 slide-in-from-left-5">
-              <Card className="p-8 border-none shadow-none bg-transparent">
+              <Card className="p-6 border-none shadow-none bg-transparent">
                 <div className="prose max-w-none text-slate-700 leading-relaxed">
-                  <p className="mb-6 text-lg">{campaignData.story}</p>
+                  <p className="mb-4 text-base">{campaignData.story}</p>
                 </div>
 
-                <div className="mt-10 p-6 bg-gradient-to-br from-blue-50 to-white rounded-2xl border border-blue-100 shadow-sm">
+                <div className="mt-8 p-5 bg-gradient-to-br from-blue-50 to-white rounded-2xl border border-blue-100 shadow-sm">
                   <div className="flex items-start gap-4">
                     <div className="p-3 bg-blue-100 rounded-xl text-blue-600">
-                      <ShieldCheck className="w-8 h-8" />
+                      <ShieldCheck className="w-7 h-7" />
                     </div>
                     <div>
-                      <h3 className="text-xl font-bold text-blue-900 mb-2">Fundora Milestone Guarantee</h3>
-                      <p className="text-slate-600 leading-relaxed">
+                      <h3 className="text-lg font-bold text-blue-900 mb-2">Fundora Milestone Guarantee</h3>
+                      <p className="text-slate-600 leading-relaxed text-sm">
                         This project is protected by our Milestone Verification System. Funds are released to the creator only after they submit verified proof of completing each stage. Your pledge is secure.
                       </p>
                     </div>
@@ -153,32 +161,101 @@ export function CampaignDetail() {
 
             <TabsContent value="milestones" className="animate-in fade-in-50 slide-in-from-left-5">
               <div className="space-y-6">
-                <div className="flex justify-between items-end mb-4">
-                  <h2 className="text-2xl font-bold text-slate-900">Project Roadmap</h2>
-                  <p className="text-slate-500">4 Milestones Total</p>
+                <div className="flex justify-between items-end mb-3">
+                  <h2 className="text-xl font-bold text-slate-900">Project Roadmap & Evidence</h2>
+                  <p className="text-slate-500 text-sm">4 Milestones Total</p>
                 </div>
+                
+                {/* Evidence Section */}
+                <Card className="p-5 border-slate-200 mb-6 bg-slate-50">
+                  <h3 className="font-bold text-base mb-4 flex items-center gap-2">
+                    <CheckCircle2 className="w-5 h-5 text-green-600" />
+                    Verified Evidence
+                  </h3>
+                  <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+                    <div className="aspect-square bg-white rounded-lg border border-slate-200 p-2 flex items-center justify-center cursor-pointer hover:border-blue-500 transition-colors">
+                      <div className="text-center">
+                        <div className="bg-slate-100 w-10 h-10 rounded-full flex items-center justify-center mx-auto mb-2">
+                          <ExternalLink className="w-4 h-4 text-slate-500" />
+                        </div>
+                        <span className="text-xs font-medium text-slate-600">Prototype Demo</span>
+                      </div>
+                    </div>
+                    <div className="aspect-square bg-white rounded-lg border border-slate-200 p-2 flex items-center justify-center cursor-pointer hover:border-blue-500 transition-colors">
+                      <div className="text-center">
+                        <div className="bg-slate-100 w-10 h-10 rounded-full flex items-center justify-center mx-auto mb-2">
+                          <ExternalLink className="w-4 h-4 text-slate-500" />
+                        </div>
+                        <span className="text-xs font-medium text-slate-600">Field Test Report</span>
+                      </div>
+                    </div>
+                  </div>
+                </Card>
+
                 <MilestoneTimeline milestones={campaignData.milestones} />
               </div>
             </TabsContent>
 
             <TabsContent value="updates" className="animate-in fade-in-50 slide-in-from-left-5">
-              <div className="space-y-8">
-                <Card className="p-6 border-l-4 border-l-blue-600 overflow-hidden">
-                  <div className="flex items-center justify-between mb-4">
+              <div className="space-y-6">
+                <Card className="p-5 border-l-4 border-l-blue-600 overflow-hidden">
+                  <div className="flex items-center justify-between mb-3">
                     <Badge className="bg-blue-100 text-blue-700 hover:bg-blue-200 border-none">Update #3</Badge>
                     <span className="text-sm text-gray-500">3 days ago</span>
                   </div>
-                  <h3 className="text-xl font-bold mb-3 text-slate-900">Field Testing Phase Completed Successfully!</h3>
-                  <p className="text-gray-600 leading-relaxed mb-4">
+                  <h3 className="text-lg font-bold mb-2 text-slate-900">Field Testing Phase Completed Successfully!</h3>
+                  <p className="text-gray-600 leading-relaxed text-sm">
                     We're excited to announce that our field testing phase has been completed with outstanding results...
                   </p>
                 </Card>
               </div>
             </TabsContent>
+
+            <TabsContent value="comments" className="animate-in fade-in-50 slide-in-from-left-5">
+              <div className="space-y-6">
+                <h2 className="text-xl font-bold text-slate-900 mb-4">Community Discussion</h2>
+                
+                {/* Comment Input */}
+                <div className="flex gap-3 mb-6">
+                  <Avatar fallback="ME" className="bg-blue-100 text-blue-600" />
+                  <div className="flex-1">
+                    <textarea 
+                      className="w-full p-3 border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent min-h-[90px] resize-none text-sm"
+                      placeholder="Ask a question or leave a comment..."
+                    ></textarea>
+                    <div className="flex justify-end mt-2">
+                      <Button size="sm">Post Comment</Button>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Comments List */}
+                <div className="space-y-4">
+                  {[1, 2].map((i) => (
+                    <div key={i} className="flex gap-3">
+                      <Avatar fallback={`U${i}`} className="bg-slate-100 text-slate-500" />
+                      <div className="flex-1">
+                        <div className="bg-slate-50 p-3 rounded-xl rounded-tl-none">
+                          <div className="flex justify-between items-start mb-1">
+                            <h4 className="font-bold text-slate-900 text-sm">User {i}</h4>
+                            <span className="text-xs text-slate-500">2 days ago</span>
+                          </div>
+                          <p className="text-slate-600 text-sm">This looks amazing! Can you confirm if the device works with solar power?</p>
+                        </div>
+                        <div className="flex gap-4 mt-2 ml-2">
+                          <button className="text-xs font-medium text-slate-500 hover:text-blue-600">Reply</button>
+                          <button className="text-xs font-medium text-slate-500 hover:text-blue-600">Like</button>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </TabsContent>
           </Tabs>
         </div>
 
-        <div className="space-y-8">
+        <div className="space-y-6">
           {/* Payment Methods Card */}
           <Card className="p-6 bg-slate-50 border-slate-200">
             <h3 className="font-bold text-slate-900 mb-4 flex items-center gap-2">
