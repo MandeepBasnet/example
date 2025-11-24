@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link, useLocation, Outlet } from 'react-router-dom';
-import { LayoutDashboard, Megaphone, Wallet, MessageSquare, Settings, LogOut } from 'lucide-react';
+import { LayoutDashboard, Megaphone, Wallet, MessageSquare, Settings, LogOut, History } from 'lucide-react';
 import { Button } from '../components/ui';
 import { FundoraLogo } from '../components/FundoraLogo';
 
@@ -33,6 +33,7 @@ export function CreatorLayout() {
           <NavItem to="/creator" icon={LayoutDashboard} label="Overview" />
           <NavItem to="/creator/campaigns" icon={Megaphone} label="My Campaigns" />
           <NavItem to="/creator/finances" icon={Wallet} label="Finances" />
+          <NavItem to="/creator/transactions" icon={History} label="Transactions" />
           <NavItem to="/creator/messages" icon={MessageSquare} label="Messages" />
           <NavItem to="/creator/profile" icon={Settings} label="Settings" />
         </nav>

@@ -31,12 +31,14 @@ import { SupportedProjects } from './pages/dashboard/SupportedProjects';
 // Shared Pages
 import { Profile } from './pages/shared/Profile';
 import { Messages } from './pages/shared/Messages';
+import { Transactions } from './pages/shared/Transactions';
 
 // Admin Pages
 import { AdminDashboard } from './pages/admin/AdminDashboard';
 import { CampaignQueue } from './pages/admin/CampaignQueue';
 import { UserManagement } from './pages/admin/UserManagement';
 import { Moderation } from './pages/admin/Moderation';
+import { PlatformSettings } from './pages/admin/PlatformSettings';
 
 export default function App() {
   return (
@@ -59,6 +61,7 @@ export default function App() {
             <Route index element={<CreatorOverview />} />
             <Route path="campaigns" element={<MyCampaigns />} />
             <Route path="finances" element={<Finances />} />
+            <Route path="transactions" element={<Transactions />} />
             <Route path="messages" element={<Messages />} />
             <Route path="profile" element={<Profile />} />
           </Route>
@@ -68,6 +71,7 @@ export default function App() {
             <Route index element={<BackerDashboard />} />
             <Route path="messages" element={<Messages />} />
             <Route path="supported" element={<SupportedProjects />} />
+            <Route path="transactions" element={<Transactions />} />
             <Route path="profile" element={<Profile />} />
           </Route>
 
@@ -77,6 +81,7 @@ export default function App() {
             <Route path="campaigns" element={<CampaignQueue />} />
             <Route path="users" element={<UserManagement />} />
             <Route path="moderation" element={<Moderation />} />
+            <Route path="settings" element={<PlatformSettings />} />
           </Route>
         </Routes>
       </div>

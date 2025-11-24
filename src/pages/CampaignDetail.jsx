@@ -100,16 +100,16 @@ export function CampaignDetail() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <Tabs defaultValue="story" className="w-full">
             <TabsList className="w-full justify-start h-auto p-0 bg-transparent space-x-8 overflow-x-auto">
-              <TabsTrigger value="story" className="rounded-none border-b-2 border-transparent data-[state=active]:border-blue-600 data-[state=active]:text-blue-600 text-slate-600 font-medium text-sm px-0 py-5 bg-transparent shadow-none whitespace-nowrap transition-colors hover:text-blue-600">
+              <TabsTrigger value="story" className="rounded-none border-b-2 border-transparent data-[state=active]:border-blue-600 data-[state=active]:text-blue-600 text-slate-600 font-medium text-sm px-4 py-5 bg-transparent shadow-none whitespace-nowrap transition-colors hover:text-blue-600">
                 Campaign
               </TabsTrigger>
-              <TabsTrigger value="milestones" className="rounded-none border-b-2 border-transparent data-[state=active]:border-blue-600 data-[state=active]:text-blue-600 text-slate-600 font-medium text-sm px-0 py-5 bg-transparent shadow-none whitespace-nowrap transition-colors hover:text-blue-600">
+              <TabsTrigger value="milestones" className="rounded-none border-b-2 border-transparent data-[state=active]:border-blue-600 data-[state=active]:text-blue-600 text-slate-600 font-medium text-sm px-4 py-5 bg-transparent shadow-none whitespace-nowrap transition-colors hover:text-blue-600">
                 Milestones & Evidence
               </TabsTrigger>
-              <TabsTrigger value="updates" className="rounded-none border-b-2 border-transparent data-[state=active]:border-blue-600 data-[state=active]:text-blue-600 text-slate-600 font-medium text-sm px-0 py-5 bg-transparent shadow-none whitespace-nowrap transition-colors hover:text-blue-600">
+              <TabsTrigger value="updates" className="rounded-none border-b-2 border-transparent data-[state=active]:border-blue-600 data-[state=active]:text-blue-600 text-slate-600 font-medium text-sm px-4 py-5 bg-transparent shadow-none whitespace-nowrap transition-colors hover:text-blue-600">
                 Updates <span className="ml-2 bg-slate-100 text-slate-600 px-1.5 py-0.5 rounded-full text-xs">3</span>
               </TabsTrigger>
-              <TabsTrigger value="comments" className="rounded-none border-b-2 border-transparent data-[state=active]:border-blue-600 data-[state=active]:text-blue-600 text-slate-600 font-medium text-sm px-0 py-5 bg-transparent shadow-none whitespace-nowrap transition-colors hover:text-blue-600">
+              <TabsTrigger value="comments" className="rounded-none border-b-2 border-transparent data-[state=active]:border-blue-600 data-[state=active]:text-blue-600 text-slate-600 font-medium text-sm px-4 py-5 bg-transparent shadow-none whitespace-nowrap transition-colors hover:text-blue-600">
                 Comments <span className="ml-2 bg-slate-100 text-slate-600 px-1.5 py-0.5 rounded-full text-xs">12</span>
               </TabsTrigger>
             </TabsList>

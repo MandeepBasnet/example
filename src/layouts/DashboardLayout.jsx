@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link, useLocation, Outlet } from 'react-router-dom';
-import { LayoutDashboard, Heart, Compass, MessageSquare, User, LogOut } from 'lucide-react';
+import { LayoutDashboard, Heart, MessageSquare, Settings, LogOut, History, Compass } from 'lucide-react';
 import { Button } from '../components/ui';
 import { FundoraLogo } from '../components/FundoraLogo';
 
@@ -33,8 +33,9 @@ export function DashboardLayout() {
           <NavItem to="/dashboard" icon={LayoutDashboard} label="Dashboard" />
           <NavItem to="/dashboard/supported" icon={Heart} label="Supported Projects" />
           <NavItem to="/campaigns" icon={Compass} label="Browse Campaigns" />
+          <NavItem to="/dashboard/transactions" icon={History} label="Transactions" />
           <NavItem to="/dashboard/messages" icon={MessageSquare} label="Messages" />
-          <NavItem to="/dashboard/profile" icon={User} label="Profile" />
+          <NavItem to="/dashboard/profile" icon={Settings} label="Settings" />
         </nav>
         <div className="p-4 border-t border-slate-100">
           <Button variant="ghost" className="w-full justify-start text-red-600 hover:text-red-700 hover:bg-red-50">
