@@ -1,0 +1,11 @@
+src/App.tsx(5,3): error TS6133: 'ChevronRight' is declared but its value is never read.
+src/App.tsx(7,15): error TS6133: 'ChevronDown' is declared but its value is never read.
+src/App.tsx(8,3): error TS6133: 'Shield' is declared but its value is never read.
+src/App.tsx(8,11): error TS6133: 'ArrowUpRight' is declared but its value is never read.
+src/App.tsx(8,30): error TS6133: 'EyeOff' is declared but its value is never read.
+src/App.tsx(135,10): error TS2322: Type 'ForwardedRef<HTMLElement>' is not assignable to type 'Ref<HTMLDivElement> | undefined'.
+  Type 'RefObject<HTMLElement | null>' is not assignable to type 'Ref<HTMLDivElement> | undefined'.
+    Type 'RefObject<HTMLElement | null>' is not assignable to type 'RefObject<HTMLDivElement | null>'.
+      Type 'HTMLElement | null' is not assignable to type 'HTMLDivElement | null'.
+        Property 'align' is missing in type 'HTMLElement' but required in type 'HTMLDivElement'.
+src/App.tsx(954,9): error TS6133: 'id' is declared but its value is never read.
