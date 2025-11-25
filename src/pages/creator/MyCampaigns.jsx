@@ -1,9 +1,12 @@
-import React from 'react';
-import { Plus, Search, Filter, MoreVertical, Edit3, BarChart2, Eye } from 'lucide-react';
+import React, { useState } from 'react';
+import { Plus, Search, Filter, MoreVertical, Edit3, BarChart2, Eye, Upload, X, CheckCircle2 } from 'lucide-react';
 import { Button, Card, Input, Badge, Progress } from '../../components/ui';
 import { creatorCampaigns } from '../../mockData';
 
 export function MyCampaigns() {
+  const [showMilestoneModal, setShowMilestoneModal] = useState(false);
+  const [selectedCampaign, setSelectedCampaign] = useState(null);
+
   const getStatusColor = (status) => {
     switch (status) {
       case 'active': return 'bg-green-100 text-green-700 border-green-200';
@@ -13,8 +16,13 @@ export function MyCampaigns() {
     }
   };
 
+  const handleOpenMilestoneModal = (campaign) => {
+    setSelectedCampaign(campaign);
+    setShowMilestoneModal(true);
+  };
+
   return (
-    <div className="space-y-8">
+    <div className="space-y-8 relative">
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
         <div>
           <h1 className="text-2xl font-bold text-slate-900">My Campaigns</h1>
@@ -77,21 +85,77 @@ export function MyCampaigns() {
               </div>
 
               {/* Actions */}
-              <div className="flex md:flex-col gap-2 justify-center border-t md:border-t-0 md:border-l border-slate-100 pt-4 md:pt-0 md:pl-6">
+              <div className="flex md:flex-col gap-2 justify-center border-t md:border-t-0 md:border-l border-slate-100 pt-4 md:pt-0 md:pl-6 min-w-[140px]">
                 <Button variant="outline" size="sm" className="justify-start gap-2">
                   <Edit3 className="h-4 w-4" /> Edit
                 </Button>
                 <Button variant="outline" size="sm" className="justify-start gap-2">
                   <BarChart2 className="h-4 w-4" /> Stats
                 </Button>
-                <Button variant="ghost" size="sm" className="justify-start gap-2 text-blue-600">
-                  <Eye className="h-4 w-4" /> View
-                </Button>
+                {campaign.status === 'active' && (
+                  <Button 
+                    variant="outline" 
+                    size="sm" 
+                    className="justify-start gap-2 text-blue-600 border-blue-200 hover:bg-blue-50"
+                    onClick={() => handleOpenMilestoneModal(campaign)}
+                  >
+                    <CheckCircle2 className="h-4 w-4" /> Submit Proof
+                  </Button>
+                )}
               </div>
             </div>
           </Card>
         ))}
       </div>
+
+      {/* Milestone Submission Modal */}
+      {showMilestoneModal && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm animate-in fade-in duration-200">
+          <Card className="w-full max-w-lg bg-white shadow-2xl overflow-hidden">
+            <div className="p-6 border-b border-slate-100 flex justify-between items-center">
+              <h2 className="text-xl font-bold text-slate-900">Submit Milestone Proof</h2>
+              <button onClick={() => setShowMilestoneModal(false)} className="text-slate-400 hover:text-slate-600">
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+            
+            <div className="p-6 space-y-6">
+              <div className="bg-blue-50 p-4 rounded-lg text-sm text-blue-800 mb-4">
+                <p>Submitting proof for: <strong>Prototype Development</strong> (25% Release)</p>
+              </div>
+
+              <div className="space-y-4">
+                <label className="block text-sm font-medium text-slate-700">Progress Description</label>
+                <textarea 
+                  className="flex min-h-[100px] w-full rounded-md border border-slate-300 bg-white px-3 py-2 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
+                  placeholder="Describe what has been achieved..."
+                />
+              </div>
+
+              <div className="space-y-4">
+                <label className="block text-sm font-medium text-slate-700">Evidence Upload</label>
+                <div className="border-2 border-dashed border-slate-300 rounded-xl p-8 text-center hover:border-blue-500 transition-colors cursor-pointer bg-slate-50">
+                  <div className="inline-flex p-3 bg-white rounded-full shadow-sm mb-3">
+                    <Upload className="w-6 h-6 text-blue-600" />
+                  </div>
+                  <p className="text-sm text-slate-600">Click to upload images, videos or documents</p>
+                  <p className="text-xs text-slate-400 mt-1">Max file size: 10MB</p>
+                </div>
+              </div>
+
+              <div className="space-y-4">
+                <label className="block text-sm font-medium text-slate-700">Next Milestone Estimate</label>
+                <Input type="date" />
+              </div>
+            </div>
+
+            <div className="p-6 border-t border-slate-100 bg-slate-50 flex justify-end gap-3">
+              <Button variant="outline" onClick={() => setShowMilestoneModal(false)}>Cancel</Button>
+              <Button className="bg-blue-600 hover:bg-blue-700 text-white">Submit for Review</Button>
+            </div>
+          </Card>
+        </div>
+      )}
     </div>
   );
 }

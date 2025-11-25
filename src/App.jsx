@@ -33,6 +33,8 @@ import { Profile } from './pages/shared/Profile';
 import { Messages } from './pages/shared/Messages';
 import { Transactions } from './pages/shared/Transactions';
 
+import { NotificationCenter } from './pages/shared/NotificationCenter';
+
 // Admin Pages
 import { AdminDashboard } from './pages/admin/AdminDashboard';
 import { CampaignQueue } from './pages/admin/CampaignQueue';
@@ -55,6 +57,7 @@ export default function App() {
           <Route path="/start-campaign" element={<><Navbar /><StartCampaign /><Footer /></>} />
           <Route path="/campaigns" element={<><Navbar /><BrowseCampaigns /><Footer /></>} />
           <Route path="/campaigns/:id" element={<><Navbar /><CampaignDetail /><Footer /></>} />
+          <Route path="/notifications" element={<><Navbar /><div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8"><NotificationCenter /></div><Footer /></>} />
           
           {/* Creator Dashboard Routes */}
           <Route path="/creator" element={<CreatorLayout />}>

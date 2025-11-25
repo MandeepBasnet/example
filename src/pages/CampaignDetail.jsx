@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import { 
-  Heart, Share2, PlayCircle, ExternalLink, ShieldCheck, Wallet, CheckCircle2, Flag, MapPin, Clock, Users
+  Heart, Share2, PlayCircle, ExternalLink, ShieldCheck, Wallet, CheckCircle2, Flag, MapPin, Clock, Users, MessageCircle, X, AlertTriangle
 } from 'lucide-react';
-import { Button, Card, Badge, Progress, Tabs, TabsList, TabsTrigger, TabsContent, Avatar } from '../components/ui';
+import { Button, Card, Badge, Progress, Tabs, TabsList, TabsTrigger, TabsContent, Avatar, Input } from '../components/ui';
 import { ImageWithFallback } from '../components/ImageWithFallback';
 import { MilestoneTimeline } from '../components/MilestoneTimeline';
 import { RewardTier } from '../components/RewardTier';
@@ -11,11 +11,18 @@ import { campaignData } from '../mockData';
 
 export function CampaignDetail() {
   const [selectedReward, setSelectedReward] = useState(null);
+  const [showPaymentModal, setShowPaymentModal] = useState(false);
+  const [showReportModal, setShowReportModal] = useState(false);
+  const [paymentMethod, setPaymentMethod] = useState('esewa');
   
   const percentageFunded = Math.round((campaignData.raised / campaignData.goal) * 100);
 
+  const handleBackProject = () => {
+    setShowPaymentModal(true);
+  };
+
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-white relative">
       {/* 1. Header Section: Title & Blurb (Kickstarter Style: Top Center) */}
       <div className="bg-white pt-12 pb-8 border-b border-slate-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center mb-10">
@@ -75,7 +82,11 @@ export function CampaignDetail() {
               </div>
 
               <div className="space-y-3 mt-auto">
-                <Button size="lg" className="w-full h-14 text-lg font-bold bg-blue-600 hover:bg-blue-700 text-white rounded-sm shadow-sm transition-all">
+                <Button 
+                  size="lg" 
+                  className="w-full h-14 text-lg font-bold bg-blue-600 hover:bg-blue-700 text-white rounded-sm shadow-sm transition-all"
+                  onClick={handleBackProject}
+                >
                   Back this project
                 </Button>
                 <div className="flex gap-3">
@@ -227,9 +238,17 @@ export function CampaignDetail() {
                     </div>
                   </div>
                   <p className="text-sm text-slate-600 mb-4">We are a team of agricultural engineers and software developers passionate about modernizing farming.</p>
-                  <Button variant="link" className="p-0 h-auto text-blue-600 font-bold hover:text-blue-700 hover:no-underline">
-                    See more projects
-                  </Button>
+                  
+                  <div className="flex gap-2">
+                    <Button variant="outline" className="flex-1 text-sm" asChild>
+                      <Link to="/messages">
+                        <MessageCircle className="w-4 h-4 mr-2" /> Message
+                      </Link>
+                    </Button>
+                    <Button variant="link" className="flex-1 text-blue-600 font-bold hover:text-blue-700 hover:no-underline text-sm">
+                      See more projects
+                    </Button>
+                  </div>
                 </div>
 
                 {/* Support / Rewards */}
@@ -241,7 +260,10 @@ export function CampaignDetail() {
                         key={reward.id} 
                         reward={reward}
                         selected={selectedReward === reward.id}
-                        onSelect={() => setSelectedReward(reward.id)}
+                        onSelect={() => {
+                          setSelectedReward(reward.id);
+                          handleBackProject();
+                        }}
                       />
                     ))}
                   </div>
@@ -265,7 +287,10 @@ export function CampaignDetail() {
 
                 {/* Flag Campaign */}
                 <div className="pt-8 border-t border-slate-200">
-                  <button className="flex items-center gap-2 text-sm text-slate-500 hover:text-red-600 transition-colors w-full justify-center">
+                  <button 
+                    onClick={() => setShowReportModal(true)}
+                    className="flex items-center gap-2 text-sm text-slate-500 hover:text-red-600 transition-colors w-full justify-center"
+                  >
                     <Flag className="w-4 h-4" />
                     Report this project
                   </button>
@@ -275,6 +300,108 @@ export function CampaignDetail() {
           </Tabs>
         </div>
       </div>
+
+      {/* Payment Modal */}
+      {showPaymentModal && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm animate-in fade-in duration-200">
+          <Card className="w-full max-w-lg bg-white shadow-2xl overflow-hidden">
+            <div className="p-6 border-b border-slate-100 flex justify-between items-center">
+              <h2 className="text-xl font-bold text-slate-900">Back this project</h2>
+              <button onClick={() => setShowPaymentModal(false)} className="text-slate-400 hover:text-slate-600">
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+            
+            <div className="p-6 space-y-6">
+              <div className="space-y-4">
+                <label className="block text-sm font-medium text-slate-700">Pledge Amount</label>
+                <div className="relative">
+                  <span className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-500 font-bold">Rs.</span>
+                  <Input 
+                    type="number" 
+                    defaultValue={selectedReward ? campaignData.rewards.find(r => r.id === selectedReward)?.amount : 100} 
+                    className="pl-10 text-lg font-bold"
+                  />
+                </div>
+                <p className="text-xs text-slate-500">Minimum pledge is Rs. 100</p>
+              </div>
+
+              <div className="space-y-4">
+                <label className="block text-sm font-medium text-slate-700">Payment Method</label>
+                <div className="grid grid-cols-2 gap-4">
+                  <div 
+                    onClick={() => setPaymentMethod('esewa')}
+                    className={`border rounded-lg p-4 cursor-pointer flex items-center justify-center gap-2 ${paymentMethod === 'esewa' ? 'border-green-500 bg-green-50 ring-1 ring-green-500' : 'border-slate-200 hover:border-slate-300'}`}
+                  >
+                    <span className="font-bold text-green-600">eSewa</span>
+                  </div>
+                  <div 
+                    onClick={() => setPaymentMethod('khalti')}
+                    className={`border rounded-lg p-4 cursor-pointer flex items-center justify-center gap-2 ${paymentMethod === 'khalti' ? 'border-purple-500 bg-purple-50 ring-1 ring-purple-500' : 'border-slate-200 hover:border-slate-300'}`}
+                  >
+                    <span className="font-bold text-purple-600">Khalti</span>
+                  </div>
+                </div>
+              </div>
+
+              <div className="bg-slate-50 p-4 rounded-lg text-sm text-slate-600">
+                <p>You will be redirected to {paymentMethod === 'esewa' ? 'eSewa' : 'Khalti'} to complete your payment securely.</p>
+              </div>
+            </div>
+
+            <div className="p-6 border-t border-slate-100 bg-slate-50 flex justify-end gap-3">
+              <Button variant="outline" onClick={() => setShowPaymentModal(false)}>Cancel</Button>
+              <Button className="bg-blue-600 hover:bg-blue-700 px-8">Continue to Payment</Button>
+            </div>
+          </Card>
+        </div>
+      )}
+
+      {/* Report Modal */}
+      {showReportModal && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm animate-in fade-in duration-200">
+          <Card className="w-full max-w-lg bg-white shadow-2xl overflow-hidden">
+            <div className="p-6 border-b border-slate-100 flex justify-between items-center">
+              <h2 className="text-xl font-bold text-red-600 flex items-center gap-2">
+                <AlertTriangle className="w-5 h-5" /> Report Project
+              </h2>
+              <button onClick={() => setShowReportModal(false)} className="text-slate-400 hover:text-slate-600">
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+            
+            <div className="p-6 space-y-6">
+              <p className="text-sm text-slate-600">
+                Please let us know why you are reporting this project. Our moderation team will review your report within 24 hours.
+              </p>
+
+              <div className="space-y-4">
+                <label className="block text-sm font-medium text-slate-700">Reason</label>
+                <select className="flex h-10 w-full rounded-md border border-slate-300 bg-white px-3 py-2 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
+                  <option>Fraud or Scam</option>
+                  <option>Inappropriate Content</option>
+                  <option>Copyright Violation</option>
+                  <option>Misleading Information</option>
+                  <option>Other</option>
+                </select>
+              </div>
+
+              <div className="space-y-4">
+                <label className="block text-sm font-medium text-slate-700">Description</label>
+                <textarea 
+                  className="flex min-h-[100px] w-full rounded-md border border-slate-300 bg-white px-3 py-2 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
+                  placeholder="Please provide more details..."
+                />
+              </div>
+            </div>
+
+            <div className="p-6 border-t border-slate-100 bg-slate-50 flex justify-end gap-3">
+              <Button variant="outline" onClick={() => setShowReportModal(false)}>Cancel</Button>
+              <Button className="bg-red-600 hover:bg-red-700 text-white">Submit Report</Button>
+            </div>
+          </Card>
+        </div>
+      )}
     </div>
   );
 }

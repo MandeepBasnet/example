@@ -1,12 +1,28 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Search, Menu, X, Bell, User } from 'lucide-react';
 import { Button, Input } from './ui';
 import { FundoraLogo } from './FundoraLogo';
+import { NotificationDropdown } from './NotificationDropdown';
 
 export function Navbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isNotifOpen, setIsNotifOpen] = useState(false);
+  const notifRef = useRef(null);
   const navigate = useNavigate();
+
+  // Close dropdown when clicking outside
+  useEffect(() => {
+    function handleClickOutside(event) {
+      if (notifRef.current && !notifRef.current.contains(event.target)) {
+        setIsNotifOpen(false);
+      }
+    }
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [notifRef]);
 
   return (
     <nav className="bg-white border-b border-gray-200 sticky top-0 z-50">
@@ -38,10 +54,16 @@ export function Navbar() {
               Dashboard
             </Link>
             
-            <button className="p-2 text-gray-700 hover:text-blue-600 transition-colors relative">
-              <Bell className="w-5 h-5" />
-              <span className="absolute top-1.5 right-2 w-2 h-2 bg-red-500 rounded-full border-2 border-white"></span>
-            </button>
+            <div className="relative" ref={notifRef}>
+              <button 
+                className="p-2 text-gray-700 hover:text-blue-600 transition-colors relative"
+                onClick={() => setIsNotifOpen(!isNotifOpen)}
+              >
+                <Bell className="w-5 h-5" />
+                <span className="absolute top-1.5 right-2 w-2 h-2 bg-red-500 rounded-full border-2 border-white"></span>
+              </button>
+              <NotificationDropdown isOpen={isNotifOpen} onClose={() => setIsNotifOpen(false)} />
+            </div>
 
             <Link to="/login" className="hidden sm:flex p-2 text-gray-700 hover:text-blue-600 transition-colors">
               <User className="w-5 h-5" />
