@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Fundora</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- Custom Tailwind Config -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        sky: {
+                            50: '#f0f9ff',
+                            100: '#e0f2fe',
+                            200: '#bae6fd',
+                            300: '#7dd3fc',
+                            400: '#38bdf8',
+                            500: '#0ea5e9',
+                            600: '#0284c7',
+                            700: '#0369a1',
+                            800: '#075985',
+                            900: '#0c4a6e',
+                        },
+                        slate: {
+                            900: '#0f172a',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Merriweather', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body { font-family: 'Inter', sans-serif; color: #475569; }
+        h1, h2, h3, h4, h5, h6 { font-family: 'Merriweather', serif; }
+    </style>
+</head>
+<body class="min-h-screen bg-slate-50 flex items-center justify-center px-4 py-12 relative overflow-hidden">
+    
+    <div class="absolute inset-0 opacity-5 bg-[radial-gradient(#3b82f6_1px,transparent_1px)] [background-size:16px_16px]"></div>
+      
+    <div class="w-full max-w-md relative z-10">
+        <a href="index.html" class="inline-flex items-center gap-2 text-slate-600 hover:text-sky-600 mb-8 transition-colors font-medium">
+            <i data-lucide="arrow-left" class="w-4 h-4"></i> Back to Home
+        </a>
+
+        <div class="rounded-xl border bg-card text-card-foreground p-8 shadow-xl border-slate-200 bg-white">
+            <div class="text-center mb-8">
+                <div class="inline-flex justify-center mb-4">
+                    <div class="flex items-center gap-2">
+                        <div class="bg-sky-600 text-white p-1.5 rounded-lg">
+                            <i data-lucide="mountain" class="w-6 h-6"></i>
+                        </div>
+                        <span class="text-xl font-bold text-slate-900 tracking-tight">Fundora</span>
+                    </div>
+                </div>
+                <h1 class="text-2xl font-bold text-slate-900 font-serif">Welcome Back</h1>
+                <p class="text-slate-500 mt-2 font-sans">Sign in to continue to your dashboard</p>
+            </div>
+
+            <form class="space-y-5" action="dashboard-backer.html">
+                <div class="space-y-2">
+                    <label class="text-sm font-medium text-slate-700">Email Address</label>
+                    <input type="email" placeholder="name@company.com" class="flex h-11 w-full rounded-md border border-input bg-transparent px-3 py-1 text-sm shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50">
+                </div>
+                
+                <div class="space-y-4">
+                    <div class="space-y-2">
+                        <label class="text-sm font-medium text-slate-700">Password</label>
+                        <div class="relative">
+                            <input type="password" placeholder="Enter your password" class="flex h-11 w-full rounded-md border border-input bg-transparent px-3 py-1 text-sm shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50 pr-10">
+                            <button type="button" class="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600">
+                                <i data-lucide="eye" class="w-5 h-5"></i>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center gap-2">
+                            <input type="checkbox" id="remember" class="h-4 w-4 rounded border-gray-300 text-sky-600 focus:ring-blue-500">
+                            <label for="remember" class="text-sm text-slate-600">Remember me</label>
+                        </div>
+                        <a href="#" class="text-sm text-sky-600 hover:underline font-medium">Forgot password?</a>
+                    </div>
+                </div>
+
+                <button class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 w-full h-11 text-base bg-sky-600 hover:bg-sky-700 shadow-lg shadow-blue-200 text-white">
+                    Sign In
+                </button>
+            </form>
+
+            <div class="mt-8 pt-6 border-t border-slate-100 text-center">
+                <p class="text-sm text-slate-500 font-sans">
+                    Don't have an account? 
+                    <a href="register.html" class="text-sky-600 font-bold hover:underline">
+                        Sign up for free
+                    </a>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>
