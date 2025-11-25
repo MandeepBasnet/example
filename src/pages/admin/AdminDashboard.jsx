@@ -19,7 +19,7 @@ export function AdminDashboard() {
         {/* ... (keep stats cards) */}
         <Card className="p-6 border-none shadow-sm hover:shadow-md transition-shadow">
           <div className="flex items-center justify-between mb-4">
-            <div className="p-3 bg-blue-100 text-blue-600 rounded-xl">
+            <div className="p-3 bg-blue-100 text-sky-600 rounded-xl">
               <FileText className="w-6 h-6" />
             </div>
             <Badge className="bg-green-100 text-green-700 border-none">Active: {adminData.activeCampaigns}</Badge>

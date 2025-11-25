@@ -122,7 +122,7 @@ export function StartCampaign() {
               <div className="space-y-6">
                 <div className="border-2 border-dashed border-slate-300 rounded-xl p-8 text-center hover:border-blue-500 transition-colors cursor-pointer bg-slate-50">
                   <div className="inline-flex p-4 bg-white rounded-full shadow-sm mb-4">
-                    <ImageIcon className="w-8 h-8 text-blue-600" />
+                    <ImageIcon className="w-8 h-8 text-sky-600" />
                   </div>
                   <h3 className="font-medium text-slate-900">Upload Campaign Images</h3>
                   <p className="text-sm text-slate-500 mt-1">Drag & drop or click to browse</p>
@@ -167,7 +167,7 @@ export function StartCampaign() {
                   </div>
                 </div>
 
-                <Button variant="outline" className="w-full border-dashed border-2 py-6 text-slate-500 hover:text-blue-600 hover:border-blue-600">
+                <Button variant="outline" className="w-full border-dashed border-2 py-6 text-slate-500 hover:text-sky-600 hover:border-blue-600">
                   <Plus className="w-5 h-5 mr-2" /> Add Another Reward Tier
                 </Button>
               </div>
@@ -215,7 +215,7 @@ export function StartCampaign() {
                   </div>
                 </div>
 
-                <Button variant="outline" className="w-full border-dashed border-2 py-6 text-slate-500 hover:text-blue-600 hover:border-blue-600">
+                <Button variant="outline" className="w-full border-dashed border-2 py-6 text-slate-500 hover:text-sky-600 hover:border-blue-600">
                   <Plus className="w-5 h-5 mr-2" /> Add Another Milestone
                 </Button>
               </div>
@@ -270,7 +270,7 @@ export function StartCampaign() {
             </Button>
             
             {step < totalSteps ? (
-              <Button onClick={nextStep} className="bg-blue-600 hover:bg-blue-700">
+              <Button onClick={nextStep} className="bg-sky-600 hover:bg-blue-700">
                 Next Step <ChevronRight className="w-4 h-4 ml-2" />
               </Button>
             ) : (

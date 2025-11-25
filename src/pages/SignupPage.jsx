@@ -12,7 +12,7 @@ export function SignupPage() {
       <div className="absolute inset-0 opacity-5 bg-[radial-gradient(#3b82f6_1px,transparent_1px)] [background-size:16px_16px]"></div>
 
       <div className="w-full max-w-md relative z-10">
-        <Link to="/" className="inline-flex items-center gap-2 text-slate-600 hover:text-blue-600 mb-8 transition-colors font-medium">
+        <Link to="/" className="inline-flex items-center gap-2 text-slate-600 hover:text-sky-600 mb-8 transition-colors font-medium">
           <ArrowLeft className="w-4 h-4" /> Back to Home
         </Link>
 
@@ -80,13 +80,13 @@ export function SignupPage() {
             </div>
 
             <div className="flex items-start gap-3 pt-2">
-              <input type="checkbox" id="terms" className="mt-1 h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500" />
+              <input type="checkbox" id="terms" className="mt-1 h-4 w-4 rounded border-gray-300 text-sky-600 focus:ring-blue-500" />
               <label htmlFor="terms" className="text-sm text-slate-600">
-                I agree to the <a href="#" className="text-blue-600 hover:underline">Terms of Service</a> and <a href="#" className="text-blue-600 hover:underline">Privacy Policy</a>
+                I agree to the <a href="#" className="text-sky-600 hover:underline">Terms of Service</a> and <a href="#" className="text-sky-600 hover:underline">Privacy Policy</a>
               </label>
             </div>
 
-            <Button className="w-full h-11 text-base bg-blue-600 hover:bg-blue-700 shadow-lg shadow-blue-200">
+            <Button className="w-full h-11 text-base bg-sky-600 hover:bg-sky-700 shadow-lg shadow-blue-200">
               Create Account
             </Button>
           </form>
@@ -94,7 +94,7 @@ export function SignupPage() {
           <div className="mt-8 pt-6 border-t border-slate-100 text-center">
             <p className="text-sm text-slate-500">
               Already have an account?{' '}
-              <Link to="/login" className="text-blue-600 font-bold hover:underline">
+              <Link to="/login" className="text-sky-600 font-bold hover:underline">
                 Log in
               </Link>
             </p>

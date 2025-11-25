@@ -47,7 +47,7 @@ export function Navbar() {
 
           {/* Navigation Links */}
           <div className="flex items-center gap-4">
-            <Link to="/" className="hidden md:block text-sm font-medium text-gray-700 hover:text-blue-600 transition-colors">
+            <Link to="/" className="hidden md:block text-sm font-medium text-gray-700 hover:text-sky-600 transition-colors">
               Explore
             </Link>
             <Link to="/dashboard" className="hidden md:block text-sm font-medium text-gray-700 hover:text-blue-600 transition-colors">
@@ -69,7 +69,7 @@ export function Navbar() {
               <User className="w-5 h-5" />
             </Link>
 
-            <Button className="bg-blue-600 hover:bg-blue-700 text-white" onClick={() => navigate('/start-campaign')}>
+            <Button className="bg-sky-600 hover:bg-sky-700 text-white" onClick={() => navigate('/start-campaign')}>
               Start a Campaign
             </Button>
 

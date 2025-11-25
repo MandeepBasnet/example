@@ -126,8 +126,8 @@ export function BrowseCampaigns() {
               <div className="space-y-3">
                 {['Technology', 'Agriculture', 'Education', 'Health', 'Community', 'Art & Creative'].map((cat) => (
                   <label key={cat} className="flex items-center gap-3 cursor-pointer group">
-                    <input type="checkbox" className="rounded border-slate-300 text-blue-600 focus:ring-blue-500" />
-                    <span className="text-slate-600 group-hover:text-blue-600 transition-colors">{cat}</span>
+                    <input type="checkbox" className="rounded border-slate-300 text-sky-600 focus:ring-blue-500" />
+                    <span className="text-slate-600 group-hover:text-sky-600 transition-colors">{cat}</span>
                   </label>
                 ))}
               </div>
@@ -138,8 +138,8 @@ export function BrowseCampaigns() {
               <div className="space-y-3">
                 {['All Types', 'Reward-based', 'Donation-based', 'Milestone-based'].map((type) => (
                   <label key={type} className="flex items-center gap-3 cursor-pointer group">
-                    <input type="radio" name="fundingType" className="border-slate-300 text-blue-600 focus:ring-blue-500" />
-                    <span className="text-slate-600 group-hover:text-blue-600 transition-colors">{type}</span>
+                    <input type="radio" name="fundingType" className="border-slate-300 text-sky-600 focus:ring-blue-500" />
+                    <span className="text-slate-600 group-hover:text-sky-600 transition-colors">{type}</span>
                   </label>
                 ))}
               </div>
@@ -204,9 +204,9 @@ export function BrowseCampaigns() {
                     </div>
                     <div className="p-5">
                       <div className="mb-3">
-                        <span className="text-xs font-bold text-blue-600 uppercase tracking-wider">{campaign.category}</span>
+                        <span className="text-xs font-bold text-sky-600 uppercase tracking-wider">{campaign.category}</span>
                       </div>
-                      <h3 className="font-bold text-lg text-slate-900 mb-2 line-clamp-2 group-hover:text-blue-600 transition-colors">
+                      <h3 className="font-bold text-lg text-slate-900 mb-2 line-clamp-2 group-hover:text-sky-600 transition-colors">
                         {campaign.title}
                       </h3>
                       <p className="text-sm text-slate-500 mb-4 line-clamp-2">
@@ -257,7 +257,7 @@ export function BrowseCampaigns() {
                       <Button 
                         key={page}
                         variant={currentPage === page ? "secondary" : "outline"}
-                        className={currentPage === page ? "bg-blue-600 text-white hover:bg-blue-700" : ""}
+                        className={currentPage === page ? "bg-sky-600 text-white hover:bg-sky-700" : ""}
                         onClick={() => handlePageChange(page)}
                       >
                         {page}

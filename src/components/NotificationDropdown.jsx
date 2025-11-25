@@ -18,7 +18,7 @@ export function NotificationDropdown({ isOpen, onClose }) {
       <Card className="shadow-xl border-slate-200 overflow-hidden">
         <div className="p-4 border-b border-slate-100 flex justify-between items-center bg-white">
           <h3 className="font-bold text-slate-900">Notifications</h3>
-          <Link to="/notifications" onClick={onClose} className="text-xs text-blue-600 hover:text-blue-700 font-medium">
+          <Link to="/notifications" onClick={onClose} className="text-xs text-sky-600 hover:text-blue-700 font-medium">
             View All
           </Link>
         </div>
@@ -27,11 +27,11 @@ export function NotificationDropdown({ isOpen, onClose }) {
           {notifications.length > 0 ? (
             <div className="divide-y divide-slate-50">
               {notifications.map((notif) => (
-                <div key={notif.id} className={`p-4 hover:bg-slate-50 transition-colors cursor-pointer ${notif.read ? 'opacity-70' : 'bg-blue-50/30'}`}>
+                <div key={notif.id} className={`p-4 hover:bg-slate-50 transition-colors cursor-pointer ${notif.read ? 'opacity-70' : 'bg-sky-50/30'}`}>
                   <div className="flex gap-3">
                     <div className={`mt-1 p-2 rounded-full shrink-0 ${
                       notif.type === 'funding' ? 'bg-green-100 text-green-600' :
-                      notif.type === 'message' ? 'bg-blue-100 text-blue-600' :
+                      notif.type === 'message' ? 'bg-sky-100 text-sky-600' :
                       notif.type === 'alert' ? 'bg-red-100 text-red-600' :
                       'bg-slate-100 text-slate-600'
                     }`}>

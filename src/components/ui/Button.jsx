@@ -4,7 +4,7 @@ import { cn } from '../../utils/cn';
 const buttonVariants = (variant = "default", size = "default") => {
   const base = "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 cursor-pointer";
   const variants = {
-    default: "bg-blue-600 text-white hover:bg-blue-700 shadow-sm",
+    default: "bg-sky-600 text-white hover:bg-sky-700 shadow-sm",
     destructive: "bg-red-500 text-white hover:bg-red-600",
     outline: "border border-slate-200 bg-white hover:bg-slate-100 hover:text-slate-900",
     secondary: "bg-slate-100 text-slate-900 hover:bg-slate-200",

@@ -41,7 +41,7 @@ export function ProjectCard({ project }) {
 
         {/* Project Info */}
         <div className="p-5 flex flex-col flex-1">
-          <h3 className="mb-2 font-bold text-lg text-slate-900 line-clamp-2 group-hover:text-blue-600 transition-colors">
+          <h3 className="mb-2 font-bold text-lg text-slate-900 line-clamp-2 group-hover:text-sky-600 transition-colors">
             {project.title}
           </h3>
           <p className="text-gray-500 text-sm mb-4">by <span className="font-medium text-slate-700">{project.creator}</span></p>

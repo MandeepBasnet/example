@@ -17,7 +17,7 @@ export function Overview() {
           <p className="text-slate-500">Welcome back, TechFarm Nepal</p>
         </div>
         <Link to="/start-campaign">
-          <Button className="bg-blue-600 hover:bg-blue-700 gap-2 h-11 px-6 shadow-lg shadow-blue-200">
+          <Button className="bg-sky-600 hover:bg-sky-700 gap-2 h-11 px-6 shadow-lg shadow-blue-200">
             <PlusCircle className="h-5 w-5" /> Start New Campaign
           </Button>
         </Link>
@@ -28,7 +28,7 @@ export function Overview() {
         <Card className="p-6 border-none shadow-md hover:shadow-lg transition-shadow">
           <div className="flex items-start justify-between mb-4">
             <div className="bg-blue-100 p-3 rounded-xl">
-              <DollarSign className="w-6 h-6 text-blue-600" />
+              <DollarSign className="w-6 h-6 text-sky-600" />
             </div>
             <Badge className="bg-green-100 text-green-700 border-none">+12%</Badge>
           </div>

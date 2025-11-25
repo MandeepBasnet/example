@@ -14,7 +14,7 @@ export function BackerDashboard() {
 
       {/* Stats Overview */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <Card className="p-6 bg-blue-600 text-white border-none">
+        <Card className="p-6 bg-sky-600 text-white border-none">
           <div className="flex items-center gap-3 mb-4 text-blue-100">
             <div className="p-2 bg-white/10 rounded-lg"><Heart className="h-5 w-5" /></div>
             <span className="font-medium">Total Contributed</span>
@@ -74,7 +74,7 @@ export function BackerDashboard() {
                   <div className="h-32 overflow-hidden rounded-lg mb-3 relative">
                     <img src={campaign.image} alt={campaign.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform" />
                   </div>
-                  <h4 className="font-bold text-slate-900 group-hover:text-blue-600 transition-colors">{campaign.title}</h4>
+                  <h4 className="font-bold text-slate-900 group-hover:text-sky-600 transition-colors">{campaign.title}</h4>
                   <p className="text-xs text-slate-500">{campaign.category}</p>
                 </div>
               ))}
@@ -97,7 +97,7 @@ export function BackerDashboard() {
                 </Button>
               </Link>
               <Link to="/campaigns">
-                <Button className="w-full justify-start bg-blue-600 hover:bg-blue-700 text-white">
+                <Button className="w-full justify-start bg-sky-600 hover:bg-blue-700 text-white">
                   <ExternalLink className="w-4 h-4 mr-2" /> Browse Campaigns
                 </Button>
               </Link>

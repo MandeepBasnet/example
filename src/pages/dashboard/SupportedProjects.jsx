@@ -100,7 +100,7 @@ function ProjectCard({ project }) {
           <div>
             <div className="flex flex-col sm:flex-row justify-between items-start mb-2 gap-2">
               <div>
-                <h3 className="font-bold text-lg text-slate-900 hover:text-blue-600 transition-colors">
+                <h3 className="font-bold text-lg text-slate-900 hover:text-sky-600 transition-colors">
                   <Link to={`/campaigns/${project.id}`}>{project.title}</Link>
                 </h3>
                 <p className="text-sm text-slate-500">by {project.creator}</p>
@@ -155,7 +155,7 @@ function ProjectCard({ project }) {
         <Button variant="outline" size="sm">
           <MessageSquare className="w-4 h-4 mr-2" /> Message Creator
         </Button>
-        <Button size="sm" className="bg-blue-600 hover:bg-blue-700 text-white">
+        <Button size="sm" className="bg-sky-600 hover:bg-sky-700 text-white">
           <ExternalLink className="w-4 h-4 mr-2" /> View Campaign
         </Button>
       </div>

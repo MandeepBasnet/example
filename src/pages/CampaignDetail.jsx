@@ -58,9 +58,9 @@ export function CampaignDetail() {
               <div className="space-y-6 mb-8">
                 <div>
                   <div className="h-2 bg-slate-100 rounded-full overflow-hidden mb-2">
-                    <div className="h-full bg-blue-600" style={{ width: `${Math.min(percentageFunded, 100)}%` }}></div>
+                    <div className="h-full bg-sky-600" style={{ width: `${Math.min(percentageFunded, 100)}%` }}></div>
                   </div>
-                  <div className="flex justify-between items-baseline text-blue-600 font-bold">
+                  <div className="flex justify-between items-baseline text-sky-600 font-bold">
                     <span>{percentageFunded}% funded</span>
                   </div>
                 </div>
@@ -84,7 +84,7 @@ export function CampaignDetail() {
               <div className="space-y-3 mt-auto">
                 <Button 
                   size="lg" 
-                  className="w-full h-14 text-lg font-bold bg-blue-600 hover:bg-blue-700 text-white rounded-sm shadow-sm transition-all"
+                  className="w-full h-14 text-lg font-bold bg-sky-600 hover:bg-sky-700 text-white rounded-sm shadow-sm transition-all"
                   onClick={handleBackProject}
                 >
                   Back this project
@@ -111,16 +111,16 @@ export function CampaignDetail() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <Tabs defaultValue="story" className="w-full">
             <TabsList className="w-full justify-start h-auto p-0 bg-transparent space-x-8 overflow-x-auto">
-              <TabsTrigger value="story" className="rounded-none border-b-2 border-transparent data-[state=active]:border-blue-600 data-[state=active]:text-blue-600 text-slate-600 font-medium text-sm px-4 py-5 bg-transparent shadow-none whitespace-nowrap transition-colors hover:text-blue-600">
+              <TabsTrigger value="story" className="rounded-none border-b-2 border-transparent data-[state=active]:border-blue-600 data-[state=active]:text-sky-600 text-slate-600 font-medium text-sm px-4 py-5 bg-transparent shadow-none whitespace-nowrap transition-colors hover:text-sky-600">
                 Campaign
               </TabsTrigger>
-              <TabsTrigger value="milestones" className="rounded-none border-b-2 border-transparent data-[state=active]:border-blue-600 data-[state=active]:text-blue-600 text-slate-600 font-medium text-sm px-4 py-5 bg-transparent shadow-none whitespace-nowrap transition-colors hover:text-blue-600">
+              <TabsTrigger value="milestones" className="rounded-none border-b-2 border-transparent data-[state=active]:border-blue-600 data-[state=active]:text-sky-600 text-slate-600 font-medium text-sm px-4 py-5 bg-transparent shadow-none whitespace-nowrap transition-colors hover:text-sky-600">
                 Milestones & Evidence
               </TabsTrigger>
-              <TabsTrigger value="updates" className="rounded-none border-b-2 border-transparent data-[state=active]:border-blue-600 data-[state=active]:text-blue-600 text-slate-600 font-medium text-sm px-4 py-5 bg-transparent shadow-none whitespace-nowrap transition-colors hover:text-blue-600">
+              <TabsTrigger value="updates" className="rounded-none border-b-2 border-transparent data-[state=active]:border-blue-600 data-[state=active]:text-sky-600 text-slate-600 font-medium text-sm px-4 py-5 bg-transparent shadow-none whitespace-nowrap transition-colors hover:text-sky-600">
                 Updates <span className="ml-2 bg-slate-100 text-slate-600 px-1.5 py-0.5 rounded-full text-xs">3</span>
               </TabsTrigger>
-              <TabsTrigger value="comments" className="rounded-none border-b-2 border-transparent data-[state=active]:border-blue-600 data-[state=active]:text-blue-600 text-slate-600 font-medium text-sm px-4 py-5 bg-transparent shadow-none whitespace-nowrap transition-colors hover:text-blue-600">
+              <TabsTrigger value="comments" className="rounded-none border-b-2 border-transparent data-[state=active]:border-blue-600 data-[state=active]:text-sky-600 text-slate-600 font-medium text-sm px-4 py-5 bg-transparent shadow-none whitespace-nowrap transition-colors hover:text-sky-600">
                 Comments <span className="ml-2 bg-slate-100 text-slate-600 px-1.5 py-0.5 rounded-full text-xs">12</span>
               </TabsTrigger>
             </TabsList>
@@ -135,7 +135,7 @@ export function CampaignDetail() {
                     <p className="text-lg leading-relaxed mb-6">{campaignData.story}</p>
                     
                     <div className="my-10 p-6 bg-slate-50 rounded-xl border border-slate-100 flex gap-4">
-                      <ShieldCheck className="w-10 h-10 text-blue-600 shrink-0" />
+                      <ShieldCheck className="w-10 h-10 text-sky-600 shrink-0" />
                       <div>
                         <h4 className="font-bold text-slate-900 mb-1">Fundora Verified</h4>
                         <p className="text-sm text-slate-600">This project has passed our rigorous verification process. Milestones are tracked and funds are released in stages.</p>
@@ -157,7 +157,7 @@ export function CampaignDetail() {
                     
                     <Card className="p-6 border-slate-200 bg-slate-50/50">
                       <h3 className="font-bold text-slate-900 mb-4 flex items-center gap-2">
-                        <CheckCircle2 className="w-5 h-5 text-blue-600" />
+                        <CheckCircle2 className="w-5 h-5 text-sky-600" />
                         Verified Evidence
                       </h3>
                       <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
@@ -187,8 +187,8 @@ export function CampaignDetail() {
                         <h3 className="text-xl font-bold text-slate-900 mb-2 group-hover:text-blue-700 transition-colors">Production Phase {i} Initiated</h3>
                         <p className="text-slate-600 line-clamp-2">We are happy to report that the initial batch of sensors has arrived at our warehouse and testing has begun...</p>
                         <div className="mt-4 pt-4 border-t border-slate-100 flex items-center gap-4 text-sm text-slate-500">
-                          <span className="hover:text-blue-600">12 Comments</span>
-                          <span className="hover:text-blue-600">45 Likes</span>
+                          <span className="hover:text-sky-600">12 Comments</span>
+                          <span className="hover:text-sky-600">45 Likes</span>
                         </div>
                       </Card>
                     ))}
@@ -203,7 +203,7 @@ export function CampaignDetail() {
                       placeholder="Ask a question or cheer the creator on..."
                     ></textarea>
                     <div className="flex justify-end">
-                      <Button className="bg-blue-600 hover:bg-blue-700 text-white">Post Comment</Button>
+                      <Button className="bg-sky-600 hover:bg-sky-700 text-white">Post Comment</Button>
                     </div>
                   </div>
                   
@@ -245,7 +245,7 @@ export function CampaignDetail() {
                         <MessageCircle className="w-4 h-4 mr-2" /> Message
                       </Link>
                     </Button>
-                    <Button variant="link" className="flex-1 text-blue-600 font-bold hover:text-blue-700 hover:no-underline text-sm">
+                    <Button variant="link" className="flex-1 text-sky-600 font-bold hover:text-blue-700 hover:no-underline text-sm">
                       See more projects
                     </Button>
                   </div>
@@ -277,7 +277,7 @@ export function CampaignDetail() {
                   </h4>
                   <div className="flex gap-2">
                     <div className="h-8 w-12 bg-white border border-slate-200 rounded flex items-center justify-center">
-                      <span className="text-[10px] font-bold text-blue-600">eSewa</span>
+                      <span className="text-[10px] font-bold text-sky-600">eSewa</span>
                     </div>
                     <div className="h-8 w-12 bg-white border border-slate-200 rounded flex items-center justify-center">
                       <span className="text-[10px] font-bold text-purple-600">Khalti</span>
