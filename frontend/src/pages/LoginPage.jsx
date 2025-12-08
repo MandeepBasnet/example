@@ -1,10 +1,29 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import { ArrowLeft, Eye } from 'lucide-react';
+import React, { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { useAuth } from '../context/AuthContext';
+import { ArrowLeft, Eye, EyeOff } from 'lucide-react';
 import { Button, Card, Input } from '../components/ui';
 import { FundoraLogo } from '../components/FundoraLogo';
 
 export function LoginPage() {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
+  const [error, setError] = useState('');
+  const { login } = useAuth();
+  const navigate = useNavigate();
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setError('');
+    try {
+      await login(email, password);
+      navigate('/dashboard'); // or redirect based on role
+    } catch (err) {
+      setError(err);
+    }
+  };
+
   return (
     <div className="min-h-screen bg-slate-50 flex items-center justify-center px-4 py-12 relative overflow-hidden">
       <div className="absolute inset-0 opacity-5 bg-[radial-gradient(#3b82f6_1px,transparent_1px)] [background-size:16px_16px]"></div>
@@ -23,19 +42,38 @@ export function LoginPage() {
             <p className="text-slate-500 mt-2">Sign in to continue to your dashboard</p>
           </div>
 
-          <form className="space-y-5">
+          <form className="space-y-5" onSubmit={handleSubmit}>
+            {error && <div className="text-red-500 text-sm text-center">{error}</div>}
             <div className="space-y-2">
               <label className="text-sm font-medium text-slate-700">Email Address</label>
-              <Input type="email" placeholder="name@company.com" className="h-11" />
+              <Input 
+                type="email" 
+                placeholder="name@company.com" 
+                className="h-11"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+              />
             </div>
             
             <div className="space-y-4">
               <div className="space-y-2">
                 <label className="text-sm font-medium text-slate-700">Password</label>
                 <div className="relative">
-                  <Input type="password" placeholder="Enter your password" className="h-11 pr-10" />
-                  <button type="button" className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600">
-                    <Eye className="w-5 h-5" />
+                  <Input 
+                    type={showPassword ? "text" : "password"}
+                    placeholder="Enter your password" 
+                    className="h-11 pr-10"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    required
+                  />
+                  <button 
+                    type="button" 
+                    onClick={() => setShowPassword(!showPassword)}
+                    className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 transition-colors"
+                  >
+                    {showPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
                   </button>
                 </div>
               </div>
@@ -49,7 +87,7 @@ export function LoginPage() {
               </div>
             </div>
 
-            <Button className="w-full h-11 text-base bg-sky-600 hover:bg-sky-700 shadow-lg shadow-blue-200">
+            <Button type="submit" className="w-full h-11 text-base bg-sky-600 hover:bg-sky-700 shadow-lg shadow-blue-200">
               Sign In
             </Button>
           </form>

@@ -9,6 +9,7 @@ import { DashboardLayout } from './layouts/DashboardLayout'; // Backer Dashboard
 // Components
 import { Navbar } from './components/Navbar';
 import { Footer } from './components/Footer';
+import ProtectedRoute from './components/auth/ProtectedRoute';
 
 // Pages
 import { HomePage } from './pages/HomePage';
@@ -60,31 +61,37 @@ export default function App() {
           <Route path="/notifications" element={<><Navbar /><div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8"><NotificationCenter /></div><Footer /></>} />
           
           {/* Creator Dashboard Routes */}
-          <Route path="/creator" element={<CreatorLayout />}>
-            <Route index element={<CreatorOverview />} />
-            <Route path="campaigns" element={<MyCampaigns />} />
-            <Route path="finances" element={<Finances />} />
-            <Route path="transactions" element={<Transactions />} />
-            <Route path="messages" element={<Messages />} />
-            <Route path="profile" element={<Profile />} />
+          <Route element={<ProtectedRoute allowedRoles={['creator', 'admin']} />}>
+            <Route path="/creator" element={<CreatorLayout />}>
+              <Route index element={<CreatorOverview />} />
+              <Route path="campaigns" element={<MyCampaigns />} />
+              <Route path="finances" element={<Finances />} />
+              <Route path="transactions" element={<Transactions />} />
+              <Route path="messages" element={<Messages />} />
+              <Route path="profile" element={<Profile />} />
+            </Route>
           </Route>
 
           {/* Backer Dashboard Routes (Main Dashboard) */}
-          <Route path="/dashboard" element={<DashboardLayout />}>
-            <Route index element={<BackerDashboard />} />
-            <Route path="messages" element={<Messages />} />
-            <Route path="supported" element={<SupportedProjects />} />
-            <Route path="transactions" element={<Transactions />} />
-            <Route path="profile" element={<Profile />} />
+          <Route element={<ProtectedRoute />}>
+             <Route path="/dashboard" element={<DashboardLayout />}>
+              <Route index element={<BackerDashboard />} />
+              <Route path="messages" element={<Messages />} />
+              <Route path="supported" element={<SupportedProjects />} />
+              <Route path="transactions" element={<Transactions />} />
+              <Route path="profile" element={<Profile />} />
+            </Route>
           </Route>
 
           {/* Admin Routes */}
-          <Route path="/admin" element={<AdminLayout />}>
-            <Route index element={<AdminDashboard />} />
-            <Route path="campaigns" element={<CampaignQueue />} />
-            <Route path="users" element={<UserManagement />} />
-            <Route path="moderation" element={<Moderation />} />
-            <Route path="settings" element={<PlatformSettings />} />
+          <Route element={<ProtectedRoute allowedRoles={['admin']} />}>
+            <Route path="/admin" element={<AdminLayout />}>
+              <Route index element={<AdminDashboard />} />
+              <Route path="campaigns" element={<CampaignQueue />} />
+              <Route path="users" element={<UserManagement />} />
+              <Route path="moderation" element={<Moderation />} />
+              <Route path="settings" element={<PlatformSettings />} />
+            </Route>
           </Route>
         </Routes>
       </div>
