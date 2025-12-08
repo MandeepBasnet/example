@@ -16,7 +16,7 @@ export function SignupPage() {
           <ArrowLeft className="w-4 h-4" /> Back to Home
         </Link>
 
-        <Card className="p-8 shadow-xl border-slate-200 bg-white">
+        <Card className="p-6 md:p-8 shadow-xl border-slate-200 bg-white">
           <div className="text-center mb-8">
             <div className="inline-flex justify-center mb-4">
               <FundoraLogo />

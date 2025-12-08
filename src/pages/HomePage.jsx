@@ -95,7 +95,7 @@ export function HomePage() {
                   <ShieldCheck className="w-4 h-4" />
                   <span>#1 Trusted Crowdfunding Platform in Nepal</span>
                 </div>
-                <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight mb-6 leading-tight">
+                <h1 className="text-3xl md:text-6xl font-extrabold tracking-tight mb-6 leading-tight">
                   Empowering Nepali <br/>
                   <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-blue-200">Dreams & Innovations</span>
                 </h1>
@@ -202,7 +202,7 @@ export function HomePage() {
             </Link>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
             {trendingProjects.map(project => (
               <ProjectCard key={project.id} project={project} />
             ))}

@@ -8,6 +8,7 @@ export function BrowseCampaigns() {
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(6);
   const [searchQuery, setSearchQuery] = useState('');
+  const [showMobileFilters, setShowMobileFilters] = useState(false);
 
   // Sorting logic
   const sortedCampaigns = useMemo(() => {
@@ -110,11 +111,41 @@ export function BrowseCampaigns() {
                 }}
               />
             </div>
-            <Button variant="outline">
+            <Button variant="outline" className="lg:hidden" onClick={() => setShowMobileFilters(!showMobileFilters)}>
               <SlidersHorizontal className="w-4 h-4 mr-2" /> Filters
             </Button>
           </div>
         </div>
+
+        {/* Mobile Filters */}
+        {showMobileFilters && (
+          <div className="lg:hidden mb-6 space-y-4 animate-in slide-in-from-top-2">
+            <Card className="p-4 border-slate-200">
+              <h3 className="font-bold text-slate-900 mb-3 flex items-center gap-2">
+                <Filter className="w-4 h-4" /> Categories
+              </h3>
+              <div className="space-y-2">
+                {['Technology', 'Agriculture', 'Education', 'Health', 'Community', 'Art & Creative'].map((cat) => (
+                  <label key={cat} className="flex items-center gap-3 cursor-pointer group">
+                    <input type="checkbox" className="rounded border-slate-300 text-sky-600 focus:ring-blue-500" />
+                    <span className="text-slate-600">{cat}</span>
+                  </label>
+                ))}
+              </div>
+            </Card>
+            <Card className="p-4 border-slate-200">
+              <h3 className="font-bold text-slate-900 mb-3">Funding Type</h3>
+              <div className="space-y-2">
+                {['All Types', 'Reward-based', 'Donation-based', 'Milestone-based'].map((type) => (
+                  <label key={type} className="flex items-center gap-3 cursor-pointer group">
+                    <input type="radio" name="fundingTypeMobile" className="border-slate-300 text-sky-600 focus:ring-blue-500" />
+                    <span className="text-slate-600">{type}</span>
+                  </label>
+                ))}
+              </div>
+            </Card>
+          </div>
+        ) }
 
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
           {/* Sidebar Filters */}

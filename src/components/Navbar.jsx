@@ -83,11 +83,15 @@ export function Navbar() {
       </div>
       
       {isMobileMenuOpen && (
-        <div className="md:hidden border-t p-4 bg-white space-y-4 shadow-lg">
-          <Link to="/" className="block text-sm font-medium hover:text-blue-600 p-2 rounded hover:bg-gray-50">Explore</Link>
-          <Link to="/dashboard" className="block text-sm font-medium hover:text-blue-600 p-2 rounded hover:bg-gray-50">Dashboard</Link>
-          <Link to="/login" className="block text-sm font-medium hover:text-blue-600 p-2 rounded hover:bg-gray-50">Login</Link>
-          <Input type="search" placeholder="Search..." className="w-full" />
+        <div className="md:hidden absolute top-16 left-0 right-0 bg-white border-b border-gray-200 shadow-xl animate-in slide-in-from-top-2 z-40">
+          <div className="p-4 space-y-4">
+            <Link to="/" className="block text-base font-medium text-slate-700 hover:text-sky-600 hover:bg-slate-50 p-3 rounded-lg transition-colors" onClick={() => setIsMobileMenuOpen(false)}>Explore</Link>
+            <Link to="/dashboard" className="block text-base font-medium text-slate-700 hover:text-sky-600 hover:bg-slate-50 p-3 rounded-lg transition-colors" onClick={() => setIsMobileMenuOpen(false)}>Dashboard</Link>
+            <Link to="/login" className="block text-base font-medium text-slate-700 hover:text-sky-600 hover:bg-slate-50 p-3 rounded-lg transition-colors" onClick={() => setIsMobileMenuOpen(false)}>Login</Link>
+            <div className="pt-2">
+              <Input type="search" placeholder="Search campaigns..." className="w-full" />
+            </div>
+          </div>
         </div>
       )}
     </nav>

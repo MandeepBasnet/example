@@ -24,7 +24,7 @@ export function CampaignDetail() {
   return (
     <div className="min-h-screen bg-white relative">
       {/* 1. Header Section: Title & Blurb (Kickstarter Style: Top Center) */}
-      <div className="bg-white pt-12 pb-8 border-b border-slate-100">
+      <div className="bg-white pt-8 md:pt-12 pb-8 border-b border-slate-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center mb-10">
           <h1 className="text-4xl md:text-5xl font-bold text-slate-900 mb-4 tracking-tight">{campaignData.title}</h1>
           <p className="text-xl text-slate-500 max-w-3xl mx-auto leading-relaxed">{campaignData.description || "A revolutionary way to help local farmers using smart technology to increase yields and sustainability."}</p>

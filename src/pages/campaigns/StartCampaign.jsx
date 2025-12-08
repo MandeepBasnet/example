@@ -19,7 +19,7 @@ export function StartCampaign() {
     <div className="min-h-screen bg-slate-50 py-12 px-4">
       <div className="max-w-3xl mx-auto">
         {/* Header */}
-        <div className="mb-8 flex justify-between items-end">
+        <div className="mb-8 flex flex-col sm:flex-row justify-between items-start sm:items-end gap-4">
           <div>
             <h1 className="text-3xl font-bold text-slate-900 mb-4">Start a Campaign</h1>
             <div className="flex items-center gap-4 text-sm font-medium text-slate-500 mb-2">
@@ -27,13 +27,13 @@ export function StartCampaign() {
               <span>{Math.round(progress)}% Completed</span>
             </div>
           </div>
-          <Button variant="outline" className="text-slate-600 border-slate-300 hover:bg-slate-100">
+          <Button variant="outline" className="text-slate-600 border-slate-300 hover:bg-slate-100 w-full sm:w-auto">
             <Save className="w-4 h-4 mr-2" /> Save as Draft
           </Button>
         </div>
         <Progress value={progress} className="h-2 mb-8" />
 
-        <Card className="p-8 border-slate-200 shadow-lg">
+        <Card className="p-6 md:p-8 border-slate-200 shadow-lg">
           {/* Step 1: Basic Info */}
           {step === 1 && (
             <div className="space-y-6 animate-in fade-in slide-in-from-right-4 duration-300">

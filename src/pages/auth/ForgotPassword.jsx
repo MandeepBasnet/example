@@ -14,7 +14,7 @@ export function ForgotPassword() {
           <ArrowLeft className="w-4 h-4" /> Back to Login
         </Link>
 
-        <Card className="p-8 shadow-xl border-slate-200 bg-white">
+        <Card className="p-6 md:p-8 shadow-xl border-slate-200 bg-white">
           <div className="text-center mb-8">
             <div className="inline-flex justify-center mb-4">
               <div className="h-12 w-12 bg-blue-100 rounded-full flex items-center justify-center text-blue-600">
