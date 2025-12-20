@@ -1,0 +1,1431 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Diarium – Wireframe</title>
+  <style>
+    :root {
+      --bg: #f6f7fb;
+      --panel: #ffffff;
+      --border: #e5e7ef;
+      --muted: #6b7280;
+      --text: #111827;
+      --soft: #f1f5f9;
+      --accent: #111827;
+      --shadow: 0 10px 30px rgba(16, 24, 40, .06);
+      --radius: 18px;
+      --radius-sm: 12px;
+    }
+
+    * {
+      box-sizing: border-box
+    }
+
+    html,
+    body {
+      height: 100%
+    }
+
+    body {
+      margin: 0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+      background: var(--bg);
+      color: var(--text);
+    }
+
+    /* Layout */
+    .app {
+      height: 100vh;
+      display: grid;
+      grid-template-columns: 280px 1fr;
+    }
+
+    /* Component 1: Status Bar (Simulated) */
+    .status-bar {
+      height: 32px;
+      background: var(--panel);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 16px;
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--text);
+      user-select: none;
+    }
+
+    .status-right {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .battery-icon {
+      width: 20px;
+      height: 10px;
+      border: 1px solid var(--text);
+      border-radius: 2px;
+      position: relative;
+    }
+
+    .battery-icon::after {
+      content: '';
+      position: absolute;
+      right: -3px;
+      top: 2px;
+      height: 4px;
+      width: 2px;
+      background: var(--text);
+    }
+
+    .signal-icon {
+      display: flex;
+      gap: 2px;
+      align-items: flex-end;
+      height: 12px;
+    }
+
+    .signal-bar {
+      width: 3px;
+      background: var(--text);
+      border-radius: 1px;
+    }
+
+    /* Sidebar */
+    .sidebar {
+      background: var(--panel);
+      border-right: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      padding: 18px 16px;
+      gap: 14px;
+    }
+
+    .brand {
+      padding: 12px 10px 16px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    /* Component 4: Labels (Headline) */
+    .brand .title {
+      font-weight: 800;
+      font-size: 24px;
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+    }
+
+    /* Component 4: Labels (Sub-headline) */
+    .brand .subtitle {
+      margin-top: 6px;
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .nav {
+      padding: 10px 6px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .nav a {
+      text-decoration: none;
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 12px;
+      border-radius: 14px;
+      border: 1px solid transparent;
+      cursor: pointer;
+      user-select: none;
+      font-weight: 600;
+      font-size: 14px;
+    }
+
+    .nav a:hover {
+      background: var(--soft);
+      border-color: var(--border);
+    }
+
+    .nav a.active {
+      background: var(--soft);
+      border-color: var(--border);
+      outline: 2px solid rgba(17, 24, 39, .08);
+    }
+
+    /* Component 6: Icons (Placeholder) */
+    .ico {
+      width: 20px;
+      height: 20px;
+      border: 2px solid #9aa3b2;
+      border-radius: 6px;
+      display: inline-block;
+      background: linear-gradient(180deg, #fff, #f7f7fb);
+    }
+
+    .divider {
+      height: 1px;
+      background: var(--border);
+      margin: 6px 10px;
+    }
+
+    .streak {
+      margin-top: auto;
+      background: var(--soft);
+      border: 1px dashed #cbd5e1;
+      border-radius: 16px;
+      padding: 14px 14px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .streak .left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .flame {
+      width: 34px;
+      height: 34px;
+      border-radius: 12px;
+      border: 2px solid #cbd5e1;
+      background: #fff;
+    }
+
+    .streak small {
+      color: var(--muted);
+      font-weight: 600;
+    }
+
+    .streak b {
+      font-size: 20px
+    }
+
+    /* Main */
+    .main {
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+    }
+
+    .topbar {
+      background: var(--panel);
+      border-bottom: 1px solid var(--border);
+      padding: 14px 22px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .date {
+      font-weight: 800;
+      font-size: 18px;
+    }
+
+    .actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    /* Component 2 & 3: Buttons */
+    .btn {
+      border: 1px solid var(--border);
+      background: var(--panel);
+      /* Secondary Button Style */
+      padding: 10px 16px;
+      border-radius: 12px;
+      font-weight: 700;
+      font-size: 13px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .btn:hover {
+      background: var(--soft);
+    }
+
+    /* Primary Button Style */
+    .btn.primary {
+      border: 1px solid #111827;
+      background: #111827;
+      color: #fff;
+    }
+
+    .btn.primary:hover {
+      opacity: 0.9;
+    }
+
+    .btn.wide {
+      padding: 10px 20px;
+    }
+
+    .mini-ico {
+      width: 38px;
+      height: 38px;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      background: var(--panel);
+      display: grid;
+      place-items: center;
+      color: #94a3b8;
+      font-weight: 900;
+      cursor: pointer;
+    }
+
+    .content {
+      padding: 22px;
+      overflow: auto;
+      min-height: 0;
+      flex: 1;
+    }
+
+    /* Wireframe blocks */
+    .page {
+      display: none;
+      max-width: 1120px;
+      animation: fadeIn 0.3s ease;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(5px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .page.active {
+      display: block
+    }
+
+    .page-head {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 14px;
+      margin-bottom: 20px;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 32px;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      color: var(--text);
+    }
+
+    .sub {
+      margin-top: 6px;
+      color: var(--muted);
+      font-weight: 600;
+    }
+
+    .card {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 20px;
+    }
+
+    .grid-4 {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 16px;
+      margin: 16px 0 20px;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+      margin-top: 16px;
+    }
+
+    .metric {
+      height: 100px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .metric .k {
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .metric .v {
+      font-size: 32px;
+      font-weight: 800;
+      margin-top: 4px
+    }
+
+    .pill-ico {
+      width: 36px;
+      height: 36px;
+      border-radius: 12px;
+      border: 2px dashed #cbd5e1;
+      background: #fff;
+    }
+
+    .row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .select {
+      padding: 10px 14px;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      background: #fff;
+      color: var(--text);
+      font-weight: 700;
+      min-width: 140px;
+      text-align: center;
+      font-size: 13px;
+      cursor: pointer;
+    }
+
+    .chart {
+      height: 280px;
+      border-radius: var(--radius);
+      border: 2px dashed #cbd5e1;
+      background:
+        linear-gradient(transparent 0, transparent 24px, rgba(148, 163, 184, .25) 24px, rgba(148, 163, 184, .25) 25px) repeat-y;
+      background-size: 100% 48px;
+      display: flex;
+      align-items: flex-end;
+      padding: 16px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .chart::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      height: 55%;
+      background: linear-gradient(180deg, rgba(17, 24, 39, .04), rgba(17, 24, 39, .01));
+    }
+
+    .chart .line {
+      position: absolute;
+      left: 14px;
+      right: 14px;
+      bottom: 46px;
+      height: 3px;
+      background: rgba(148, 163, 184, .8);
+      transform: rotate(-6deg);
+      transform-origin: left center;
+    }
+
+    .chart .label {
+      position: absolute;
+      top: 14px;
+      left: 16px;
+      font-weight: 700;
+      color: var(--muted);
+      text-transform: uppercase;
+      font-size: 12px;
+      letter-spacing: 0.05em;
+    }
+
+    /* Component 5: Text Fields / Forms */
+    .form-grid {
+      display: grid;
+      gap: 16px;
+      margin-top: 16px;
+    }
+
+    .field label {
+      display: block;
+      font-weight: 700;
+      font-size: 13px;
+      margin-bottom: 8px;
+      color: var(--text);
+    }
+
+    .input {
+      width: 100%;
+      height: 48px;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      background: #fff;
+      padding: 0 16px;
+      font-weight: 600;
+      color: var(--text);
+      font-size: 14px;
+      outline: none;
+    }
+
+    .input:focus {
+      border-color: var(--muted);
+    }
+
+    .editor {
+      height: 300px;
+      border-radius: 16px;
+      border: 1px solid var(--border);
+      overflow: hidden;
+      background: #fff;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .toolbar {
+      height: 48px;
+      border-bottom: 1px solid var(--border);
+      background: var(--soft);
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      padding: 0 12px;
+    }
+
+    .tool {
+      width: 28px;
+      height: 28px;
+      border-radius: 8px;
+      border: 1px dashed #cbd5e1;
+      background: #fff;
+      cursor: pointer;
+    }
+
+    .editor-area {
+      flex: 1;
+      padding: 16px;
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.6;
+    }
+
+    /* Lists */
+    .cards-row {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+      margin-top: 16px;
+    }
+
+    .entry-card {
+      min-height: 180px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      transition: transform 0.2s;
+      cursor: pointer;
+    }
+
+    .entry-card:hover {
+      transform: translateY(-2px);
+      border-color: #cbd5e1;
+    }
+
+    .entry-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 10px;
+      color: var(--muted);
+      font-weight: 700;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+    }
+
+    .emoji {
+      width: 32px;
+      height: 32px;
+      border-radius: 10px;
+      border: 2px dashed #cbd5e1;
+      background: #fff;
+      display: grid;
+      place-items: center;
+      font-size: 16px;
+    }
+
+    .entry-title {
+      font-size: 20px;
+      font-weight: 800;
+      margin: 0;
+      line-height: 1.3;
+    }
+
+    .chips {
+      margin-top: auto;
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .chip {
+      font-size: 11px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px dashed #cbd5e1;
+      color: var(--muted);
+      background: #fff;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+
+    /* Calendar */
+    .cal-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-top: 14px;
+      padding: 10px 8px;
+    }
+
+    .cal-nav {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .arrow {
+      width: 38px;
+      height: 38px;
+      border-radius: 12px;
+      border: 1px dashed #cbd5e1;
+      background: #fff;
+      display: grid;
+      place-items: center;
+      font-weight: 900;
+      color: #94a3b8;
+      cursor: pointer;
+    }
+
+    .month {
+      font-weight: 900;
+      font-size: 20px;
+    }
+
+    .calendar {
+      margin-top: 10px;
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 10px;
+    }
+
+    .dow {
+      text-align: center;
+      color: var(--muted);
+      font-weight: 800;
+      padding: 8px 0;
+      font-size: 13px;
+      text-transform: uppercase;
+    }
+
+    .day {
+      height: 90px;
+      border-radius: 14px;
+      border: 1px solid var(--border);
+      background: #fff;
+      padding: 10px;
+      color: var(--muted);
+      font-weight: 800;
+      position: relative;
+      cursor: pointer;
+    }
+
+    .day .dot {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      border: 2px solid #cbd5e1;
+      background: #fff;
+    }
+
+    .day.active {
+      outline: 2px solid rgba(17, 24, 39, .1);
+      border-color: #cbd5e1;
+    }
+
+    .day .small {
+      margin-top: 10px;
+      font-size: 11px;
+      font-weight: 700;
+      color: #94a3b8;
+      text-transform: uppercase;
+    }
+
+    /* Timeline rows */
+    .timeline-list {
+      display: grid;
+      gap: 16px;
+      margin-top: 16px;
+    }
+
+    .timeline-item {
+      padding: 18px;
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 14px;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .timeline-item:hover {
+      background: #fff;
+      border-color: #cbd5e1;
+    }
+
+    .leftcol .meta {
+      color: var(--muted);
+      font-weight: 800;
+      font-size: 13px;
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .badge {
+      padding: 4px 8px;
+      border-radius: 6px;
+      border: 1px solid var(--border);
+      color: var(--muted);
+      background: #f8fafc;
+      font-weight: 800;
+      font-size: 11px;
+      text-transform: uppercase;
+    }
+
+    .rightcol {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 8px;
+      min-width: 220px;
+    }
+
+    /* Search */
+    .searchbar {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      padding: 16px;
+      border-radius: 18px;
+      border: 1px solid var(--border);
+      background: #fff;
+      box-shadow: var(--shadow);
+      margin-top: 16px;
+    }
+
+    .searchbar .q {
+      flex: 1;
+      height: 48px;
+      border-radius: 12px;
+      border: 2px dashed #cbd5e1;
+      background: #fff;
+      padding: 0 16px;
+      font-weight: 700;
+      color: var(--text);
+      font-size: 15px;
+      outline: none;
+    }
+
+    .searchbar .q:focus {
+      border-style: solid;
+      border-color: var(--accent);
+    }
+
+    /* Export */
+    .two-stack {
+      display: grid;
+      gap: 16px;
+      margin-top: 16px;
+      max-width: 760px;
+    }
+
+    .range-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-top: 14px;
+    }
+
+    .hint {
+      margin-top: 14px;
+      padding: 14px;
+      border-radius: 14px;
+      border: 1px dashed #cbd5e1;
+      color: var(--muted);
+      font-weight: 700;
+      background: #fff;
+      text-align: center;
+    }
+
+    .checks {
+      display: grid;
+      gap: 12px;
+      margin-top: 14px;
+    }
+
+    .check {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      color: var(--text);
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .box {
+      width: 20px;
+      height: 20px;
+      border-radius: 6px;
+      border: 2px solid #cbd5e1;
+      background: #fff;
+    }
+
+    .export-actions {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-top: 16px;
+      max-width: 760px;
+    }
+
+    /* Responsive */
+    @media (max-width: 1020px) {
+      .grid-4 {
+        grid-template-columns: repeat(2, minmax(0, 1fr))
+      }
+
+      .cards-row {
+        grid-template-columns: 1fr
+      }
+
+      .rightcol {
+        min-width: 160px
+      }
+    }
+
+    @media (max-width: 860px) {
+      .app {
+        grid-template-columns: 1fr
+      }
+
+      .sidebar {
+        display: none
+      }
+
+      .page {
+        max-width: 100%
+      }
+
+      .range-row {
+        grid-template-columns: 1fr
+      }
+
+      .status-bar {
+        display: flex;
+      }
+
+      /* Ensure status bar shows on mobile */
+    }
+  </style>
+</head>
+
+<body>
+  <div class="app">
+    <aside class="sidebar">
+      <div class="brand">
+        <div class="title">Diarium</div>
+        <div class="subtitle">-----</div>
+      </div>
+
+      <nav class="nav" id="nav">
+        <a class="active" data-page="dashboard"><span class="ico"></span> Dashboard</a>
+        <a data-page="today"><span class="ico"></span> Today</a>
+        <a data-page="journals"><span class="ico"></span> My Journals</a>
+        <a data-page="calendar"><span class="ico"></span> Calendar</a>
+        <a data-page="timeline"><span class="ico"></span> Timeline</a>
+        <a data-page="search"><span class="ico"></span> Search</a>
+        <a data-page="export"><span class="ico"></span> Export</a>
+
+        <div class="divider"></div>
+
+        <a data-page="settings"><span class="ico"></span> Settings</a>
+        <a data-page="login"><span class="ico"></span> Login</a>
+      </nav>
+
+      <div class="streak">
+        <div class="left">
+          <div class="flame"></div>
+          <div>
+            <small>Current Streak</small><br />
+            <b>3 days</b>
+          </div>
+        </div>
+        <span class="badge">WF</span>
+      </div>
+    </aside>
+
+    <main class="main">
+      <div class="status-bar">
+        <div class="status-left">9:41</div>
+        <div class="status-right">
+          <div class="signal-icon">
+            <div class="signal-bar" style="height: 40%"></div>
+            <div class="signal-bar" style="height: 60%"></div>
+            <div class="signal-bar" style="height: 80%"></div>
+            <div class="signal-bar" style="height: 100%"></div>
+          </div>
+          <div style="font-weight: 800;">Wi-Fi</div>
+          <div class="battery-icon"></div>
+        </div>
+      </div>
+
+      <header class="topbar">
+        <div class="date">Saturday, December 20, 2025</div>
+        <div class="actions">
+          <button class="btn primary wide">＋ Edit Today</button>
+          <div class="mini-ico" title="Theme">◐</div>
+          <div class="mini-ico" title="Lock">⌁</div>
+        </div>
+      </header>
+
+      <div class="content">
+        <section class="page active" id="dashboard">
+          <div class="page-head">
+            <div>
+              <h1>Dashboard</h1>
+              <div class="sub">-----</div>
+            </div>
+            <div class="select">Last 30 days ▾</div>
+          </div>
+
+          <div class="grid-4">
+            <div class="card metric">
+              <div>
+                <div class="k">Total Entries</div>
+                <div class="v">3</div>
+              </div>
+              <div class="pill-ico"></div>
+            </div>
+            <div class="card metric">
+              <div>
+                <div class="k">Current Streak</div>
+                <div class="v">3 <span style="font-size:14px;color:var(--muted);font-weight:800">days</span></div>
+              </div>
+              <div class="pill-ico"></div>
+            </div>
+            <div class="card metric">
+              <div>
+                <div class="k">Longest Streak</div>
+                <div class="v">3 <span style="font-size:14px;color:var(--muted);font-weight:800">days</span></div>
+              </div>
+              <div class="pill-ico"></div>
+            </div>
+            <div class="card metric">
+              <div>
+                <div class="k">Missed Days</div>
+                <div class="v">28</div>
+              </div>
+              <div class="pill-ico"></div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="row" style="margin-bottom:12px;">
+              <div style="font-weight:900;font-size:18px;">Writing Activity</div>
+              <span class="badge">chart</span>
+            </div>
+            <div class="chart" aria-label="Chart placeholder">
+              <div class="label">-----</div>
+              <div class="line"></div>
+            </div>
+
+            <div class="grid-2">
+              <div class="card" style="box-shadow:none;">
+                <div class="row">
+                  <b>Mood Distribution</b>
+                  <span class="badge">WF</span>
+                </div>
+                <div style="height:140px;margin-top:12px;border-radius:16px;border:2px dashed #cbd5e1;background:#fff;">
+                </div>
+              </div>
+              <div class="card" style="box-shadow:none;">
+                <div class="row">
+                  <b>Most Used Tags</b>
+                  <span class="badge">WF</span>
+                </div>
+                <div style="height:140px;margin-top:12px;border-radius:16px;border:2px dashed #cbd5e1;background:#fff;">
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="page" id="today">
+          <div class="page-head">
+            <div>
+              <h1>Today's Entry</h1>
+              <div class="sub">-----</div>
+            </div>
+            <div class="actions">
+              <button class="btn">⏱ History</button>
+              <button class="btn" style="border-color:#f1c0c0;background:#fff;">🗑 Delete</button>
+            </div>
+          </div>
+
+          <div class="form-grid">
+            <div class="card">
+              <div class="field">
+                <label>Title *</label>
+                <input class="input" value="Hello" placeholder="Enter title here..." />
+              </div>
+            </div>
+
+            <div class="card">
+              <div class="field">
+                <label>Content</label>
+                <div class="editor">
+                  <div class="toolbar">
+                    <div class="tool"></div>
+                    <div class="tool"></div>
+                    <div class="tool"></div>
+                    <div class="tool"></div>
+                    <div class="tool"></div>
+                    <div class="tool"></div>
+                    <div class="tool"></div>
+                    <div class="tool"></div>
+                    <span style="margin-left:auto" class="badge">preview</span>
+                  </div>
+                  <div class="editor-area">-----</div>
+                </div>
+                <div style="margin-top:10px;color:var(--muted);font-weight:800;font-size:12px;">1 words</div>
+              </div>
+            </div>
+
+            <div class="card">
+              <b>How are you feeling?</b>
+              <div class="sub">-----</div>
+              <div class="chips" style="margin-top:12px;">
+                <span class="chip">Happy</span>
+                <span class="chip">Thoughtful</span>
+                <span class="chip">Nervous</span>
+                <span class="chip">Excited</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="page" id="journals">
+          <div class="page-head">
+            <div>
+              <h1>My Journals</h1>
+              <div class="sub">-----</div>
+            </div>
+            <button class="btn primary wide">＋ New Entry</button>
+          </div>
+
+          <div class="cards-row">
+            <div class="card entry-card">
+              <div class="entry-top">
+                <div>DEC 20, 2025<br /><span style="font-weight:700">Saturday</span></div>
+                <div class="emoji">🙂</div>
+              </div>
+              <h3 class="entry-title">Hello</h3>
+              <div style="color:var(--muted);font-weight:600; font-size:14px;">Mandeep</div>
+              <div class="divider" style="margin:8px 0;"></div>
+              <div class="chips">
+                <span class="chip">+1</span>
+              </div>
+            </div>
+
+            <div class="card entry-card">
+              <div class="entry-top">
+                <div>DEC 19, 2025<br /><span style="font-weight:700">Friday</span></div>
+                <div class="emoji">😐</div>
+              </div>
+              <h3 class="entry-title">Hello</h3>
+              <div style="color:var(--muted);font-weight:600; font-size:14px;">-----</div>
+              <div class="chips">
+                <span class="chip">+2</span>
+              </div>
+            </div>
+
+            <div class="card entry-card">
+              <div class="entry-top">
+                <div>DEC 18, 2025<br /><span style="font-weight:700">Thursday</span></div>
+                <div class="emoji">😊</div>
+              </div>
+              <h3 class="entry-title">Mandeep</h3>
+              <div style="color:var(--muted);font-weight:600; font-size:14px;">Hello</div>
+              <div class="divider" style="margin:8px 0;"></div>
+              <div class="chips">
+                <span class="chip">+2</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="page" id="calendar">
+          <div class="page-head">
+            <div>
+              <h1>Calendar</h1>
+              <div class="sub">-----</div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="cal-head">
+              <div class="cal-nav">
+                <div class="arrow">‹</div>
+              </div>
+              <div class="month">December 2025</div>
+              <div class="cal-nav">
+                <button class="btn">Today</button>
+                <div class="arrow">›</div>
+              </div>
+            </div>
+
+            <div class="calendar" style="margin-top:12px;">
+              <div class="dow">Sun</div>
+              <div class="dow">Mon</div>
+              <div class="dow">Tue</div>
+              <div class="dow">Wed</div>
+              <div class="dow">Thu</div>
+              <div class="dow">Fri</div>
+              <div class="dow">Sat</div>
+
+              <div class="day" style="opacity:.45">30</div>
+              <div class="day">1</div>
+              <div class="day">2</div>
+              <div class="day">3</div>
+              <div class="day">4</div>
+              <div class="day">5</div>
+              <div class="day">6</div>
+
+              <div class="day">7</div>
+              <div class="day">8</div>
+              <div class="day">9</div>
+              <div class="day">10</div>
+              <div class="day">11</div>
+              <div class="day">12</div>
+              <div class="day">13</div>
+
+              <div class="day">14</div>
+              <div class="day">15</div>
+              <div class="day">16</div>
+              <div class="day">17</div>
+
+              <div class="day">
+                18 <span class="dot"></span>
+                <div class="small">Entry</div>
+              </div>
+              <div class="day">
+                19 <span class="dot"></span>
+                <div class="small">Entry</div>
+              </div>
+              <div class="day active">
+                20 <span class="dot"></span>
+                <div class="small">Entry</div>
+              </div>
+
+              <div class="day">21</div>
+              <div class="day">22</div>
+              <div class="day">23</div>
+              <div class="day">24</div>
+              <div class="day">25</div>
+              <div class="day">26</div>
+              <div class="day">27</div>
+
+              <div class="day">28</div>
+              <div class="day">29</div>
+              <div class="day">30</div>
+              <div class="day">31</div>
+              <div class="day" style="opacity:.45">1</div>
+              <div class="day" style="opacity:.45">2</div>
+              <div class="day" style="opacity:.45">3</div>
+            </div>
+          </div>
+        </section>
+
+        <section class="page" id="timeline">
+          <div class="page-head">
+            <div>
+              <h1>Timeline</h1>
+              <div class="sub">-----</div>
+            </div>
+            <div class="row" style="gap:10px;">
+              <div style="color:var(--muted);font-weight:800;">Show:</div>
+              <div class="select">10 entries ▾</div>
+            </div>
+          </div>
+
+          <div class="timeline-list">
+            <div class="card timeline-item">
+              <div class="leftcol">
+                <div class="meta">
+                  <span style="color:#2563eb;">Saturday, December 20, 2025</span>
+                  <span class="badge">Draft</span>
+                </div>
+                <div style="margin-top:10px;font-size:22px;font-weight:900;">Hello</div>
+                <div style="margin-top:8px;color:var(--muted);font-weight:800;">1 words &nbsp;&nbsp; Updated 12/20/2025
+                  12:21 PM</div>
+              </div>
+              <div class="rightcol">
+                <span class="badge">🙂 Nervous</span>
+                <span class="badge">Milestone</span>
+              </div>
+            </div>
+
+            <div class="card timeline-item">
+              <div class="leftcol">
+                <div class="meta">
+                  <span style="color:#2563eb;">Friday, December 19, 2025</span>
+                  <span class="badge">Draft</span>
+                </div>
+                <div style="margin-top:10px;font-size:22px;font-weight:900;">Hello</div>
+                <div style="margin-top:8px;color:var(--muted);font-weight:800;">0 words &nbsp;&nbsp; Updated 12/19/2025
+                  10:32 AM</div>
+              </div>
+              <div class="rightcol">
+                <span class="badge">🙂 Happy</span>
+                <div style="display:flex; gap:8px; flex-wrap:wrap; justify-content:flex-end;">
+                  <span class="badge">Achievement</span>
+                  <span class="badge">Challenge</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="card timeline-item">
+              <div class="leftcol">
+                <div class="meta">
+                  <span style="color:#2563eb;">Thursday, December 18, 2025</span>
+                </div>
+                <div style="margin-top:10px;font-size:22px;font-weight:900;">Mandeep</div>
+                <div style="margin-top:8px;color:var(--muted);font-weight:800;">1 words &nbsp;&nbsp; Updated 12/18/2025
+                  11:07 AM</div>
+              </div>
+              <div class="rightcol">
+                <span class="badge">🙂 Thoughtful</span>
+                <div style="display:flex; gap:8px; flex-wrap:wrap; justify-content:flex-end;">
+                  <span class="badge">Personal</span>
+                  <span class="badge">Achievement</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="page" id="search">
+          <div class="page-head">
+            <div>
+              <h1>Search</h1>
+              <div class="sub">-----</div>
+            </div>
+          </div>
+
+          <div class="searchbar">
+            <input class="q" value="Mandeep" />
+            <button class="btn primary">Search</button>
+            <button class="btn">Filters</button>
+          </div>
+
+          <div style="margin-top:14px;color:var(--muted);font-weight:900;">Found 2 entries</div>
+
+          <div class="timeline-list">
+            <div class="card timeline-item">
+              <div class="leftcol">
+                <div class="meta"><span style="color:#2563eb;">Saturday, December 20, 2025</span></div>
+                <div style="margin-top:10px;font-size:22px;font-weight:900;">Hello</div>
+                <div class="chips" style="margin-top:10px;">
+                  <span class="chip" style="border-style:solid;">Mandeep</span>
+                  <span class="chip">Milestone</span>
+                </div>
+              </div>
+              <div class="rightcol">
+                <span class="badge">🙂 Nervous</span>
+                <span style="color:var(--muted);font-weight:900;">1 words</span>
+              </div>
+            </div>
+
+            <div class="card timeline-item">
+              <div class="leftcol">
+                <div class="meta"><span style="color:#2563eb;">Thursday, December 18, 2025</span></div>
+                <div style="margin-top:10px;font-size:22px;font-weight:900;">Mandeep</div>
+                <div style="margin-top:8px;color:var(--muted);font-weight:800;">Hello</div>
+                <div class="chips" style="margin-top:10px;">
+                  <span class="chip">Personal</span>
+                  <span class="chip">Achievement</span>
+                </div>
+              </div>
+              <div class="rightcol">
+                <span class="badge">🙂 Thoughtful</span>
+                <span style="color:var(--muted);font-weight:900;">1 words</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="page" id="export">
+          <div class="page-head">
+            <div style="text-align:center; width:100%;">
+              <h1 style="text-align:center;">Export</h1>
+              <div class="sub" style="text-align:center;">-----</div>
+            </div>
+          </div>
+
+          <div class="two-stack">
+            <div class="card">
+              <b style="font-size:18px;">Date Range</b>
+
+              <div class="range-row">
+                <div class="field">
+                  <label>From Date</label>
+                  <input class="input" value="11/20/2025" />
+                </div>
+                <div class="field">
+                  <label>To Date</label>
+                  <input class="input" value="12/20/2025" />
+                </div>
+              </div>
+
+              <div class="row" style="margin-top:14px;flex-wrap:wrap;gap:10px;color:var(--muted);font-weight:900;">
+                <span>Last 7 days</span>
+                <span>Last 30 days</span>
+                <span>Last 90 days</span>
+                <span>Last year</span>
+                <span>All time</span>
+              </div>
+
+              <div class="hint">3 entries will be exported</div>
+            </div>
+
+            <div class="card">
+              <b style="font-size:18px;">Export Options</b>
+              <div class="checks">
+                <div class="check"><span class="box"></span> - - - - -</div>
+                <div class="check"><span class="box"></span> - - - - -</div>
+                <div class="check"><span class="box"></span> - - - - -</div>
+                <div class="check"><span class="box"></span> - - - - -</div>
+              </div>
+            </div>
+
+            <div class="export-actions">
+              <button class="btn">📁 Open Export Folder</button>
+              <button class="btn primary wide">⬇ Export to PDF</button>
+            </div>
+          </div>
+        </section>
+
+        <section class="page" id="settings">
+          <div class="page-head">
+            <div>
+              <h1>Settings</h1>
+              <div class="sub">-----</div>
+            </div>
+          </div>
+
+          <div class="card" style="max-width:760px;">
+            <div class="field">
+              <label>Theme</label>
+              <div class="select">Light / Dark ▾</div>
+            </div>
+            <div style="height:14px"></div>
+            <div class="field">
+              <label>Profile</label>
+              <div style="height:120px;border-radius:16px;border:2px dashed #cbd5e1;background:#fff;"></div>
+            </div>
+            <div style="height:14px"></div>
+            <div class="field">
+              <label>Security</label>
+              <div style="height:120px;border-radius:16px;border:2px dashed #cbd5e1;background:#fff;"></div>
+            </div>
+          </div>
+        </section>
+
+        <section class="page" id="login">
+          <div
+            style="display:flex; flex-direction:column; align-items:center; justify-content:center; min-height:80vh;">
+            <div class="card" style="width:100%; max-width:400px; text-align:center; padding:40px;">
+              <div style="font-size:48px; margin-bottom:10px;">📓</div>
+              <h1 style="font-size:28px; margin-bottom:8px;">Diarium</h1>
+              <div style="color:var(--muted); font-weight:600; margin-bottom:32px;">Your personal journal</div>
+
+              <div class="form-grid" style="text-align:left; gap:20px;">
+                <div class="field">
+                  <label>Username</label>
+                  <input class="input" type="text" placeholder="Enter your username" />
+                </div>
+                <div class="field">
+                  <label>Password</label>
+                  <input class="input" type="password" placeholder="Enter your password" />
+                </div>
+                <button class="btn primary"
+                  style="width:100%; margin-top:10px; height:48px; font-size:15px;">Login</button>
+              </div>
+
+              <div style="margin-top:32px; font-size:12px; color:var(--muted); font-weight:600;">
+                All data is stored locally on your device.
+              </div>
+            </div>
+          </div>
+        </section>
+
+      </div>
+    </main>
+  </div>
+
+  <script>
+    // Simple page switching for wireframe prototype
+    const nav = document.getElementById("nav");
+    const links = [...nav.querySelectorAll("a[data-page]")];
+    const pages = new Map([...document.querySelectorAll(".page")].map(p => [p.id, p]));
+
+    function setActive(pageId) {
+      links.forEach(a => a.classList.toggle("active", a.dataset.page === pageId));
+      pages.forEach((el, id) => el.classList.toggle("active", id === pageId));
+    }
+
+    links.forEach(a => {
+      a.addEventListener("click", () => setActive(a.dataset.page));
+    });
+
+    // Optional: allow hash navigation like #calendar
+    if (location.hash && pages.has(location.hash.slice(1))) {
+      setActive(location.hash.slice(1));
+    }
+    window.addEventListener("hashchange", () => {
+      const id = location.hash.slice(1);
+      if (pages.has(id)) setActive(id);
+    });
+  </script>
+</body>
+
+</html>
